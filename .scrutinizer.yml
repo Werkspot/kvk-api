@@ -1,0 +1,18 @@
+filter:
+    excluded_paths: [tests/*]
+checks:
+  php:
+    code_rating: true
+    duplication: true
+
+build:
+    environment:
+        php:
+            version: 7.1
+    tests:
+        override:
+            -
+                command: 'make coverage'
+                coverage:
+                    file: 'coverage/clover.xml'
+                    format: 'php-clover'
