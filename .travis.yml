@@ -11,4 +11,4 @@ before_script:
   - if [ -n "$GH_TOKEN" ]; then composer config github-oauth.github.com ${GH_TOKEN}; fi;
   - php composer.phar install --dev
 
-script: make unit-tests
+script: make all-tests
