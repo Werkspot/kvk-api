@@ -10,7 +10,7 @@ use Werkspot\KvkApi\Api\Profile\Company;
 use Werkspot\KvkApi\Client\Adapter\Guzzle;
 use Werkspot\KvkApi\Client\Adapter\Guzzle\Exception\NotFoundException;
 use Werkspot\KvkApi\Client\Authentication;
-use Werkspot\KvkApi\Client\EndPoint;
+use Werkspot\KvkApi\Client\Endpoint;
 use Werkspot\KvkApi\Client\Search\ProfileQuery;
 use Werkspot\KvkApi\ClientFactory;
 
@@ -78,8 +78,8 @@ final class ClientTest extends TestCase
     {
         return new Guzzle(
             new Client(),
-            new Authentication\Basic(self::USERNAME, self::PASSWORD),
-            new EndPoint\Testing()
+            new Authentication\HttpBasic(self::USERNAME, self::PASSWORD),
+            new Endpoint\Testing()
         );
     }
 }

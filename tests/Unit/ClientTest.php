@@ -12,7 +12,7 @@ use Werkspot\KvkApi\Api\ProfileResponse;
 use Werkspot\KvkApi\Client;
 use Werkspot\KvkApi\Client\Adapter\AdapterInterface;
 use Werkspot\KvkApi\Client\Builder\ProfileResponseBuilderInterface;
-use Werkspot\KvkApi\Client\EndPoint\MapperInterface;
+use Werkspot\KvkApi\Client\Endpoint\MapperInterface;
 use Werkspot\KvkApi\Client\Search\ProfileQuery;
 use Werkspot\KvkApi\Tests\Unit\MockeryAssertionTrait;
 
@@ -34,7 +34,7 @@ final class ClientTest extends TestCase
         $json = json_encode(['data' => $data]);
 
         $adapter = $this->getAdapter();
-        $adapter->shouldReceive('getEndPoint')->with(MapperInterface::PROFILE, $profileQuery)->once()->andReturn($response);
+        $adapter->shouldReceive('getEndpoint')->with(MapperInterface::PROFILE, $profileQuery)->once()->andReturn($response);
         $adapter->shouldReceive('getJson')->with($response)->once()->andReturn($json);
         $profileResponseBuilder = $this->getProfileResponseBuilder();
         $profileResponseBuilder->shouldReceive('fromData')->with($data)->once()->andReturn($this->getProfileResponce());

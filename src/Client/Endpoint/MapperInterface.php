@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Werkspot\KvkApi\Client\EndPoint;
+namespace Werkspot\KvkApi\Client\Endpoint;
 
 interface MapperInterface
 {
