@@ -16,11 +16,8 @@ return PhpCsFixer\Config::create()
         'yoda_style' => false,
         'blank_line_before_statement' => ['statements' => ['break', 'continue', 'declare', 'return', 'throw', 'try']],
     ])
-    ->setFinder(
+     ->setFinder(
         PhpCsFixer\Finder::create()
-            ->exclude('bin')
-            ->exclude('coverage')
-            ->exclude('vendor')
-            ->in(__DIR__)
-    )
-    ;
+            ->in([__DIR__ . '/src', __DIR__ . '/tests'])
+            ->name('*.php')
+     );
