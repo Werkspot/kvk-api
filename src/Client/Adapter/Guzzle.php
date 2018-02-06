@@ -9,7 +9,7 @@ use GuzzleHttp\Exception\RequestException;
 use Psr\Http\Message\ResponseInterface;
 use Werkspot\KvkApi\Client\Adapter\Guzzle\Exception\Handler;
 use Werkspot\KvkApi\Client\Authentication\AuthenticationInterface;
-use Werkspot\KvkApi\Client\EndPoint\MapperInterface;
+use Werkspot\KvkApi\Client\Endpoint\MapperInterface;
 use Werkspot\KvkApi\Client\Search\QueryInterface;
 
 final class Guzzle implements AdapterInterface
@@ -27,7 +27,7 @@ final class Guzzle implements AdapterInterface
     /**
      * @var MapperInterface
      */
-    private $endPointMapper;
+    private $endpointMapper;
 
     public function __construct(
         GuzzleClientInterface $guzzleClient,
@@ -36,13 +36,13 @@ final class Guzzle implements AdapterInterface
     ) {
         $this->guzzleClient = $guzzleClient;
         $this->authentication = $authentication;
-        $this->endPointMapper = $urlMapper;
+        $this->endpointMapper = $urlMapper;
     }
 
-    public function getEndPoint(string $endPoint, QueryInterface $searchQuery): ResponseInterface
+    public function getEndpoint(string $endpoint, QueryInterface $searchQuery): ResponseInterface
     {
         return $this->get(
-            $this->endPointMapper->map($endPoint),
+            $this->endpointMapper->map($endpoint),
             ['query' => $searchQuery->get()]
         );
     }

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Werkspot\KvkApi\Test\Client\EndPoint;
+namespace Werkspot\KvkApi\Test\Client\Endpoint;
 
 use PHPUnit\Framework\TestCase;
-use Werkspot\KvkApi\Client\EndPoint\MapperInterface;
-use Werkspot\KvkApi\Client\EndPoint\Testing;
+use Werkspot\KvkApi\Client\Endpoint\MapperInterface;
+use Werkspot\KvkApi\Client\Endpoint\Testing;
 
 /**
  * @small
@@ -17,10 +17,10 @@ final class TestingTest extends TestCase
      * @test
      * @dataProvider getEndpoints
      */
-    public function canMapAllKeys(string $endPointKey):void
+    public function canMapAllKeys(string $endpointKey):void
     {
         $endpoint = new Testing();
-        $endpoint = $endpoint->map($endPointKey);
+        $endpoint = $endpoint->map($endpointKey);
 
         self::assertNotNull($endpoint);
         self::assertContains(Testing::BASE_URL, $endpoint);
@@ -28,7 +28,7 @@ final class TestingTest extends TestCase
 
     /**
      * @test
-     * @expectedException \Werkspot\KvkApi\Client\EndPoint\Exception\EndpointCouldNotBeMappedException
+     * @expectedException \Werkspot\KvkApi\Client\Endpoint\Exception\EndpointCouldNotBeMappedException
      */
     public function mappingInvalidKeyThrowsException():void
     {

@@ -7,7 +7,7 @@ use Werkspot\KvkApi\Client\Search\QueryInterface;
 
 interface AdapterInterface
 {
-    public function getEndPoint(string $endPoint, QueryInterface $searchQuery): ResponseInterface;
+    public function getEndpoint(string $endpoint, QueryInterface $searchQuery): ResponseInterface;
     public function getUrl(string $url): ResponseInterface;
     public function getJson(ResponseInterface $response): string;
 }

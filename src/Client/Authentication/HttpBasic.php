@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Werkspot\KvkApi\Client\Authentication;
 
-final class Basic implements AuthenticationInterface
+final class HttpBasic implements AuthenticationInterface
 {
     private $username;
 

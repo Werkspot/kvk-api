@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Werkspot\KvkApi\Client\Adapter\Guzzle;
 use Werkspot\KvkApi\Client\Authentication\AuthenticationInterface;
-use Werkspot\KvkApi\Client\EndPoint\MapperInterface;
+use Werkspot\KvkApi\Client\Endpoint\MapperInterface;
 use Werkspot\KvkApi\Client\Search\QueryInterface;
 use Werkspot\KvkApi\Tests\Unit\MockeryAssertionTrait;
 
@@ -26,9 +26,9 @@ final class GuzzleTest extends TestCase
     /**
      * @test
      */
-    public function getEndPoint(): void
+    public function getEndpoint(): void
     {
-        $endPoint = MapperInterface::PROFILE;
+        $endpoint = MapperInterface::PROFILE;
         $url = 'http://example.com';
         $searchQueryOptions = 'searchQuery';
         $authenticationHeader = 'authenticationHeader';
@@ -36,7 +36,7 @@ final class GuzzleTest extends TestCase
         $expectedOptions = ['query' => [$searchQueryOptions], 'headers' => [$authenticationHeader]];
 
         $urlMapper = $this->getMapper();
-        $urlMapper->shouldReceive('map')->once()->with($endPoint)->andReturn($url);
+        $urlMapper->shouldReceive('map')->once()->with($endpoint)->andReturn($url);
 
         $searchQuery = $this->getSearchQuery();
         $searchQuery->shouldReceive('get')->once()->andReturn([$searchQueryOptions]);
@@ -48,7 +48,7 @@ final class GuzzleTest extends TestCase
         $guzzleClient->shouldReceive('get')->once()->with($url, $expectedOptions)->andReturn($this->getResponse());
 
         $adapter = new Guzzle($guzzleClient, $authentication, $urlMapper);
-        $adapter->getEndPoint($endPoint, $searchQuery);
+        $adapter->getEndpoint($endpoint, $searchQuery);
     }
 
     /**

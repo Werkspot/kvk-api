@@ -8,7 +8,7 @@ use Werkspot\KvkApi\Api\ProfileResponse;
 use Werkspot\KvkApi\Api\ResponseInterface;
 use Werkspot\KvkApi\Client\Adapter\AdapterInterface;
 use Werkspot\KvkApi\Client\Builder\ProfileResponseBuilderInterface;
-use Werkspot\KvkApi\Client\EndPoint\MapperInterface;
+use Werkspot\KvkApi\Client\Endpoint\MapperInterface;
 use Werkspot\KvkApi\Client\Search\ProfileQuery;
 
 final class Client
@@ -31,7 +31,7 @@ final class Client
 
     public function getProfile(ProfileQuery $profileQuery): ProfileResponse
     {
-        $json = $this->adapter->getJson($this->adapter->getEndPoint(MapperInterface::PROFILE, $profileQuery));
+        $json = $this->adapter->getJson($this->adapter->getEndpoint(MapperInterface::PROFILE, $profileQuery));
         $data = json_decode($json, true)['data'];
 
         return $this->profileResponseBuilder->fromData($data);

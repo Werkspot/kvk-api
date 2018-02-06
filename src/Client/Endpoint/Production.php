@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Werkspot\KvkApi\Client\EndPoint;
+namespace Werkspot\KvkApi\Client\Endpoint;
 
 use Exception;
-use Werkspot\KvkApi\Client\EndPoint\Exception\EndpointCouldNotBeMappedException;
+use Werkspot\KvkApi\Client\Endpoint\Exception\EndpointCouldNotBeMappedException;
 
 final class Production implements MapperInterface
 {
