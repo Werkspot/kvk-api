@@ -6,18 +6,18 @@ help:
 	@echo "Available commands:"
 	@grep '^[^#[:space:]].*:' Makefile | grep -v '^default' | grep -v '^_' | sed 's/://' | xargs -n 1 echo ' -'
 
-coverage:
+fix-code-standards:
+	./vendor/bin/php-cs-fixer fix --verbose
+
+test:
+	$(MAKE) test-integration
+	$(MAKE) test-unit
+
+test-coverage:
 	rm -rf coverage; ./vendor/bin/phpunit --coverage-html=coverage/ --coverage-clover=coverage/clover.xml
 
-all-tests:
-	$(MAKE) unit-tests
-	$(MAKE) integration-tests
-
-unit-tests:
-	./vendor/bin/phpunit --testsuite unit
-
-integration-tests:
+test-integration:
 	./vendor/bin/phpunit --testsuite integration
 
-cs-fix:
-	./vendor/bin/php-cs-fixer fix --verbose
+test-unit:
+	./vendor/bin/phpunit --testsuite unit
