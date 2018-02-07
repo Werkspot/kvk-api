@@ -41,10 +41,21 @@ $profileQuery->setKvkNumber(18079951);
 $profileResponse = $client->getProfile($profileQuery);
 ```
 
-Credits
+Tests
+-----
+
+This package comes with 2 types of tests: Unit and Integration.
+To run them you can use the make commands in the projects root.
+
+```bash
+$ make test-unit
+$ make test-integration
+```
+
+Author
 -------
 
-KVK API has been developed by [LauLaman][LauLaman].
+KVK API has been developed by [LauLaman].
 
 [kvk-api-documentation]: https://developers.kvk.nl/documentation
 [LauLaman]: https://github.com/LauLaman
