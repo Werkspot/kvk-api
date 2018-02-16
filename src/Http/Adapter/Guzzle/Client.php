@@ -8,10 +8,9 @@ use GuzzleHttp\ClientInterface as GuzzleClientInterface;
 use GuzzleHttp\Exception\RequestException;
 use Psr\Http\Message\ResponseInterface;
 use Werkspot\KvkApi\Http\Adapter\Guzzle\Exception\Handler;
-use Werkspot\KvkApi\Client\Authentication\AuthenticationInterface;
-use Werkspot\KvkApi\Client\Endpoint\MapperInterface;
-use Werkspot\KvkApi\Client\Search\QueryInterface;
 use Werkspot\KvkApi\Http\ClientInterface;
+use Werkspot\KvkApi\Http\Endpoint\MapperInterface;
+use Werkspot\KvkApi\Http\Search\QueryInterface;
 
 final class Client implements ClientInterface
 {
@@ -21,22 +20,15 @@ final class Client implements ClientInterface
     private $guzzleClient;
 
     /**
-     * @var AuthenticationInterface
-     */
-    private $authentication;
-
-    /**
      * @var MapperInterface
      */
     private $endpointMapper;
 
     public function __construct(
         GuzzleClientInterface $guzzleClient,
-        AuthenticationInterface $authentication,
         MapperInterface $urlMapper
     ) {
         $this->guzzleClient = $guzzleClient;
-        $this->authentication = $authentication;
         $this->endpointMapper = $urlMapper;
     }
 
@@ -60,11 +52,6 @@ final class Client implements ClientInterface
 
     private function get(string $url, ?array $options = [])
     {
-        $options = array_merge(
-            $options,
-            ['headers' => [$this->authentication->getHeader()]]
-         );
-
         try {
             return $this->guzzleClient->get($url, $options);
         } catch (RequestException $exception) {

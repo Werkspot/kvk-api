@@ -1,0 +1,108 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Werkspot\KvkApi\Test\Client\Factory\Profile;
+
+use Mockery;
+use Mockery\MockInterface;
+use PHPUnit\Framework\TestCase;
+use Werkspot\KvkApi\Client\Factory\Profile\Company\AddressFactoryInterface;
+use Werkspot\KvkApi\Client\Factory\Profile\Company\BusinessActivityFactoryInterface;
+use Werkspot\KvkApi\Client\Factory\Profile\Company\TradeNamesFactoryInterface;
+use Werkspot\KvkApi\Client\Factory\Profile\CompanyFactory;
+use Werkspot\KvkApi\Client\Profile\Company\TradeNames;
+use Werkspot\KvkApi\Tests\Unit\MockeryAssertionTrait;
+
+/**
+ * @small
+ */
+final class CompanyFactoryTest extends TestCase
+{
+    use MockeryAssertionTrait;
+
+    /**
+     * @test
+     * @dataProvider getCompanyData
+     */
+    public function fromArray(array $data): void
+    {
+        $tradeNamesFactory = $this->getTradeNamesFactory();
+        $tradeNamesFactory->shouldReceive('fromArray')->with($data['tradeNames'])->once()->andReturn(new TradeNames(null, null, null, null));
+        $businessActivityFactory = $this->getBusinessActivityFactory();
+        $businessActivityFactory->shouldReceive('fromArray')->with($data['businessActivities'])->once()->andReturn($data['businessActivities']);
+        $addressFactory = $this->getAddressFactory();
+        $addressFactory->shouldReceive('fromArray')->with($data['addresses'])->once()->andReturn($data['addresses']);
+
+        $factory = new CompanyFactory($tradeNamesFactory, $businessActivityFactory, $addressFactory);
+
+        $company = $factory->fromArray($data);
+
+        self::assertEquals($data['kvkNumber'], $company->getKvkNumber());
+        self::assertEquals($data['branchNumber'], $company->getBranchNumber());
+        self::assertEquals($data['rsin'], $company->getRsin());
+        self::assertInstanceOf(TradeNames::class, $company->getTradeNames());
+        self::assertEquals($data['legalForm'], $company->getLegalForm());
+        self::assertEquals($data['businessActivities'], $company->getBusinessActivities());
+        self::assertEquals($data['hasEntryInBusinessRegister'], $company->hasEntryInBusinessRegister());
+        self::assertEquals($data['hasCommercialActivities'], $company->hasCommercialActivities());
+        self::assertEquals($data['hasNonMailingIndication'], $company->hasNonMailingIndication());
+        self::assertEquals($data['isLegalPerson'], $company->isLegalPerson());
+        self::assertEquals($data['isBranch'], $company->isBranch());
+        self::assertEquals($data['isMainBranch'], $company->isMainBranch());
+        self::assertEquals($data['employees'], $company->getEmployees());
+        self::assertEquals($data['foundationDate'], $company->getFoundationDate()->format('Ymd'));
+        self::assertEquals($data['registrationDate'], $company->getRegistrationDate()->format('Ymd'));
+        self::assertEquals($data['addresses'], $company->getAddresses());
+    }
+
+    public function getCompanyData(): array
+    {
+        return [
+            [
+                [
+                    'kvkNumber' => '69599084',
+                    'branchNumber' => '000038509520',
+                    'rsin' => '857587973',
+                    'tradeNames' => ['tradeNames'],
+                    'legalForm' => 'Eenmanszaak',
+                    'businessActivities' => ['businessActivities'],
+                    'hasEntryInBusinessRegister' => true,
+                    'hasCommercialActivities' => true,
+                    'hasNonMailingIndication' => true,
+                    'isLegalPerson' => false,
+                    'isBranch' => true,
+                    'isMainBranch' => false,
+                    'employees' => 5,
+                    'foundationDate' => '20170108',
+                    'registrationDate' => '20170710',
+                    'addresses' => ['Address']
+                ],
+            ]
+        ];
+    }
+
+    /**
+     * @return MockInterface|TradeNamesFactoryInterface
+     */
+    private function getTradeNamesFactory()
+    {
+        return Mockery::mock(TradeNamesFactoryInterface::class);
+    }
+
+    /**
+     * @return MockInterface|BusinessActivityFactoryInterface
+     */
+    private function getBusinessActivityFactory()
+    {
+        return Mockery::mock(BusinessActivityFactoryInterface::class);
+    }
+
+    /**
+     * @return MockInterface|AddressFactoryInterface
+     */
+    private function getAddressFactory()
+    {
+        return Mockery::mock(AddressFactoryInterface::class);
+    }
+}

@@ -20,25 +20,23 @@ Usage
 -----
 
 ```php
-use GuzzleHttp\Client;
-use Werkspot\KvkApi\Http\Adapter\Guzzle\Client as GuzzleAdapter;
-use Werkspot\KvkApi\Client\Authentication;
-use Werkspot\KvkApi\Client\Endpoint;
-use Werkspot\KvkApi\Client\Search\ProfileQuery;
+use Werkspot\KvkApi\Http\Endpoint\Production;
+use Werkspot\KvkApi\Http\Search\ProfileQuery;
 use Werkspot\KvkApi\ClientFactory;
 
-$http = new GuzzleAdapter(
-    new Client(),
-    new Authentication\HttpBasic('<USERNAME>', '<PASSWORD>'),
-    new Endpoint\Production()
-);
-
-$client = ClientFactory::getClient($http);
+$client = ClientFactory::create('<YOUR_API_KEY>', new Production());
 
 $profileQuery = new ProfileQuery();
 $profileQuery->setKvkNumber(18079951);
 
-$profileResponse = $client->getProfile($profileQuery);
+$kvkPaginator = $client->getProfile($profileQuery);
+
+foreach ($kvkPaginator->getItems() as $company) {
+    // {your code}
+}
+
+// get next set of data
+$kvkPaginator = $client->getNextPage($kvkPaginator);
 ```
 
 Tests
