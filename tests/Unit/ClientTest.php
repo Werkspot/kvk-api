@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Werkspot\KvkApi\Api\ProfileResponse;
 use Werkspot\KvkApi\Client;
-use Werkspot\KvkApi\Client\Adapter\AdapterInterface;
+use Werkspot\KvkApi\Http\ClientInterface;
 use Werkspot\KvkApi\Client\Builder\ProfileResponseBuilderInterface;
 use Werkspot\KvkApi\Client\Endpoint\MapperInterface;
 use Werkspot\KvkApi\Client\Search\ProfileQuery;
@@ -84,11 +84,11 @@ final class ClientTest extends TestCase
     }
 
     /**
-     * @return MockInterface|AdapterInterface
+     * @return MockInterface|ClientInterface
      */
     private function getAdapter()
     {
-        return Mockery::mock(AdapterInterface::class);
+        return Mockery::mock(ClientInterface::class);
     }
 
     /**

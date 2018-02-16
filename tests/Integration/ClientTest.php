@@ -7,8 +7,8 @@ namespace Werkspot\KvkApi\Tests\Integration;
 use GuzzleHttp\Client;
 use PHPUnit\Framework\TestCase;
 use Werkspot\KvkApi\Api\Profile\Company;
-use Werkspot\KvkApi\Client\Adapter\Guzzle;
-use Werkspot\KvkApi\Client\Adapter\Guzzle\Exception\NotFoundException;
+use Werkspot\KvkApi\Http\Adapter\Guzzle\Client as GuzzleAdapter;
+use Werkspot\KvkApi\Http\Adapter\Guzzle\Exception\NotFoundException;
 use Werkspot\KvkApi\Client\Authentication;
 use Werkspot\KvkApi\Client\Endpoint;
 use Werkspot\KvkApi\Client\Search\ProfileQuery;
@@ -72,11 +72,11 @@ final class ClientTest extends TestCase
     }
 
     /**
-     * @return Guzzle
+     * @return GuzzleAdapter
      */
-    private function getAdapter(): Guzzle
+    private function getAdapter(): GuzzleAdapter
     {
-        return new Guzzle(
+        return new GuzzleAdapter(
             new Client(),
             new Authentication\HttpBasic(self::USERNAME, self::PASSWORD),
             new Endpoint\Testing()

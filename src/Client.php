@@ -6,7 +6,7 @@ namespace Werkspot\KvkApi;
 
 use Werkspot\KvkApi\Api\ProfileResponse;
 use Werkspot\KvkApi\Api\ResponseInterface;
-use Werkspot\KvkApi\Client\Adapter\AdapterInterface;
+use Werkspot\KvkApi\Http\ClientInterface;
 use Werkspot\KvkApi\Client\Builder\ProfileResponseBuilderInterface;
 use Werkspot\KvkApi\Client\Endpoint\MapperInterface;
 use Werkspot\KvkApi\Client\Search\ProfileQuery;
@@ -14,7 +14,7 @@ use Werkspot\KvkApi\Client\Search\ProfileQuery;
 final class Client
 {
     /**
-     * @var AdapterInterface
+     * @var ClientInterface
      */
     private $adapter;
 
@@ -23,7 +23,7 @@ final class Client
      */
     private $profileResponseBuilder;
 
-    public function __construct(AdapterInterface $adapter, ProfileResponseBuilderInterface $profileResponseBuilder)
+    public function __construct(ClientInterface $adapter, ProfileResponseBuilderInterface $profileResponseBuilder)
     {
         $this->adapter = $adapter;
         $this->profileResponseBuilder = $profileResponseBuilder;
