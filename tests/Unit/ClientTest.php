@@ -8,12 +8,12 @@ use Mockery;
 use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
-use Werkspot\KvkApi\Api\ProfileResponse;
-use Werkspot\KvkApi\Client;
+use Werkspot\KvkApi\Client\Factory\KvkPaginatorFactoryInterface;
+use Werkspot\KvkApi\Client\KvkPaginator;
 use Werkspot\KvkApi\Http\ClientInterface;
-use Werkspot\KvkApi\Client\Builder\ProfileResponseBuilderInterface;
-use Werkspot\KvkApi\Client\Endpoint\MapperInterface;
-use Werkspot\KvkApi\Client\Search\ProfileQuery;
+use Werkspot\KvkApi\Http\Endpoint\MapperInterface;
+use Werkspot\KvkApi\Http\Search\ProfileQuery;
+use Werkspot\KvkApi\KvkClient;
 use Werkspot\KvkApi\Tests\Unit\MockeryAssertionTrait;
 
 /**
@@ -36,10 +36,10 @@ final class ClientTest extends TestCase
         $adapter = $this->getAdapter();
         $adapter->shouldReceive('getEndpoint')->with(MapperInterface::PROFILE, $profileQuery)->once()->andReturn($response);
         $adapter->shouldReceive('getJson')->with($response)->once()->andReturn($json);
-        $profileResponseBuilder = $this->getProfileResponseBuilder();
-        $profileResponseBuilder->shouldReceive('fromData')->with($data)->once()->andReturn($this->getProfileResponce());
+        $profileResponseFactory = $this->getProfileResponseFactory();
+        $profileResponseFactory->shouldReceive('fromProfileData')->with($data)->once()->andReturn($this->getProfileResponce());
 
-        $client = new Client($adapter, $profileResponseBuilder);
+        $client = new KvkClient($adapter, $profileResponseFactory);
         $client->getProfile($profileQuery);
     }
 
@@ -56,10 +56,10 @@ final class ClientTest extends TestCase
         $adapter = $this->getAdapter();
         $adapter->shouldReceive('getUrl')->with($profileResponse->getNextUrl())->once()->andReturn($response);
         $adapter->shouldReceive('getJson')->with($response)->once()->andReturn($json);
-        $profileResponseBuilder = $this->getProfileResponseBuilder();
-        $profileResponseBuilder->shouldReceive('fromData')->with($data)->once()->andReturn($this->getProfileResponce());
+        $profileResponseFactory = $this->getProfileResponseFactory();
+        $profileResponseFactory->shouldReceive('fromProfileData')->with($data)->once()->andReturn($this->getProfileResponce());
 
-        $client = new Client($adapter, $profileResponseBuilder);
+        $client = new KvkClient($adapter, $profileResponseFactory);
         $client->getNextPage($profileResponse);
     }
 
@@ -76,10 +76,10 @@ final class ClientTest extends TestCase
         $adapter = $this->getAdapter();
         $adapter->shouldReceive('getUrl')->with($profileResponse->getPreviousUrl())->once()->andReturn($response);
         $adapter->shouldReceive('getJson')->with($response)->once()->andReturn($json);
-        $profileResponseBuilder = $this->getProfileResponseBuilder();
-        $profileResponseBuilder->shouldReceive('fromData')->with($data)->once()->andReturn($this->getProfileResponce());
+        $profileResponseFactory = $this->getProfileResponseFactory();
+        $profileResponseFactory->shouldReceive('fromProfileData')->with($data)->once()->andReturn($this->getProfileResponce());
 
-        $client = new Client($adapter, $profileResponseBuilder);
+        $client = new KvkClient($adapter, $profileResponseFactory);
         $client->getPreviousPage($profileResponse);
     }
 
@@ -92,11 +92,11 @@ final class ClientTest extends TestCase
     }
 
     /**
-     * @return MockInterface|ProfileResponseBuilderInterface
+     * @return MockInterface|KvkPaginatorFactoryInterface
      */
-    private function getProfileResponseBuilder()
+    private function getProfileResponseFactory()
     {
-        return Mockery::mock(ProfileResponseBuilderInterface::class);
+        return Mockery::mock(KvkPaginatorFactoryInterface::class);
     }
 
     /**
@@ -107,9 +107,9 @@ final class ClientTest extends TestCase
         return Mockery::mock(ResponseInterface::class);
     }
 
-    private function getProfileResponce(): ProfileResponse
+    private function getProfileResponce(): KvkPaginator
     {
-        return new ProfileResponse(
+        return new KvkPaginator(
             1,
             2,
             3,

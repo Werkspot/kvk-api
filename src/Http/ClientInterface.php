@@ -3,7 +3,7 @@
 namespace Werkspot\KvkApi\Http;
 
 use Psr\Http\Message\ResponseInterface;
-use Werkspot\KvkApi\Client\Search\QueryInterface;
+use Werkspot\KvkApi\Http\Search\QueryInterface;
 
 interface ClientInterface
 {
