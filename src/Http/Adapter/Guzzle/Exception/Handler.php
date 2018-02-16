@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Werkspot\KvkApi\Client\Adapter\Guzzle\Exception;
+namespace Werkspot\KvkApi\Http\Adapter\Guzzle\Exception;
 
 use GuzzleHttp\Exception\RequestException;
 use Werkspot\KvkApi\Exception\KvkApiException;

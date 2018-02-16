@@ -2,17 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Werkspot\KvkApi\Client\Adapter;
+namespace Werkspot\KvkApi\Http\Adapter\Guzzle;
 
 use GuzzleHttp\ClientInterface as GuzzleClientInterface;
 use GuzzleHttp\Exception\RequestException;
 use Psr\Http\Message\ResponseInterface;
-use Werkspot\KvkApi\Client\Adapter\Guzzle\Exception\Handler;
+use Werkspot\KvkApi\Http\Adapter\Guzzle\Exception\Handler;
 use Werkspot\KvkApi\Client\Authentication\AuthenticationInterface;
 use Werkspot\KvkApi\Client\Endpoint\MapperInterface;
 use Werkspot\KvkApi\Client\Search\QueryInterface;
+use Werkspot\KvkApi\Http\ClientInterface;
 
-final class Guzzle implements AdapterInterface
+final class Client implements ClientInterface
 {
     /**
      * @var GuzzleClientInterface

@@ -10,7 +10,7 @@ use Mockery;
 use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
-use Werkspot\KvkApi\Client\Adapter\Guzzle;
+use Werkspot\KvkApi\Http\Adapter\Guzzle\Client;
 use Werkspot\KvkApi\Client\Authentication\AuthenticationInterface;
 use Werkspot\KvkApi\Client\Endpoint\MapperInterface;
 use Werkspot\KvkApi\Client\Search\QueryInterface;
@@ -47,7 +47,7 @@ final class GuzzleTest extends TestCase
         $guzzleClient = $this->getGuzzleClient();
         $guzzleClient->shouldReceive('get')->once()->with($url, $expectedOptions)->andReturn($this->getResponse());
 
-        $adapter = new Guzzle($guzzleClient, $authentication, $urlMapper);
+        $adapter = new Client($guzzleClient, $authentication, $urlMapper);
         $adapter->getEndpoint($endpoint, $searchQuery);
     }
 
@@ -68,7 +68,7 @@ final class GuzzleTest extends TestCase
         $guzzleClient = $this->getGuzzleClient();
         $guzzleClient->shouldReceive('get')->once()->with($url, $expectedOptions)->andReturn($this->getResponse());
 
-        $adapter = new Guzzle($guzzleClient, $authentication, $urlMapper);
+        $adapter = new Client($guzzleClient, $authentication, $urlMapper);
         $adapter->getUrl($url);
     }
 
@@ -91,7 +91,7 @@ final class GuzzleTest extends TestCase
         $guzzleClient = $this->getGuzzleClient();
         $guzzleClient->shouldReceive('get')->once()->with($url, $expectedOptions)->andThrow(Mockery::Mock(RequestException::class));
 
-        $adapter = new Guzzle($guzzleClient, $authentication, $urlMapper);
+        $adapter = new Client($guzzleClient, $authentication, $urlMapper);
         $adapter->getUrl($url);
     }
 
@@ -104,7 +104,7 @@ final class GuzzleTest extends TestCase
         $response->shouldReceive('getBody')->once()->andReturnSelf();
         $response->shouldReceive('getContents')->once()->andReturn('');
 
-        $adapter = new Guzzle($this->getGuzzleClient(), $this->getAuthentication(), $this->getMapper());
+        $adapter = new Client($this->getGuzzleClient(), $this->getAuthentication(), $this->getMapper());
         $adapter->getJson($response);
     }
 

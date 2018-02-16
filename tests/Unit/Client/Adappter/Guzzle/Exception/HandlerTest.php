@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Werkspot\KvkApi\Tests\Unit\Client\Adapter\Guzzle\Exception;
+namespace Werkspot\KvkApi\Tests\Unit\Http\Adapter\Guzzle\Exception;
 
 use GuzzleHttp\Exception\RequestException;
 use Mockery;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use Werkspot\KvkApi\Client\Adapter\Guzzle\Exception\Handler;
+use Werkspot\KvkApi\Http\Adapter\Guzzle\Exception\Handler;
 
 /**
  * @small
@@ -27,7 +27,7 @@ final class HandlerTest extends TestCase
 
     /**
      * @test
-     * @expectedException \Werkspot\KvkApi\Client\Adapter\Guzzle\Exception\NotFoundException
+     * @expectedException \Werkspot\KvkApi\Http\Adapter\Guzzle\Exception\NotFoundException
      */
     public function handleRequestException_shouldThrowNotFoundException(): void
     {

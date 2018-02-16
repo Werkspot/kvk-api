@@ -21,19 +21,19 @@ Usage
 
 ```php
 use GuzzleHttp\Client;
-use Werkspot\KvkApi\Client\Adapter\Guzzle;
+use Werkspot\KvkApi\Http\Adapter\Guzzle\Client as GuzzleAdapter;
 use Werkspot\KvkApi\Client\Authentication;
 use Werkspot\KvkApi\Client\Endpoint;
 use Werkspot\KvkApi\Client\Search\ProfileQuery;
 use Werkspot\KvkApi\ClientFactory;
 
-$adapter = new Guzzle(
+$http = new GuzzleAdapter(
     new Client(),
     new Authentication\HttpBasic('<USERNAME>', '<PASSWORD>'),
     new Endpoint\Production()
 );
 
-$client = ClientFactory::getClient($adapter);
+$client = ClientFactory::getClient($http);
 
 $profileQuery = new ProfileQuery();
 $profileQuery->setKvkNumber(18079951);
