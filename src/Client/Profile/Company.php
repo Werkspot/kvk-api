@@ -69,7 +69,7 @@ final class Company
         return $this->kvkNumber;
     }
 
-    public function getBranchNumber(): string
+    public function getBranchNumber(): ?string
     {
         return $this->branchNumber;
     }
