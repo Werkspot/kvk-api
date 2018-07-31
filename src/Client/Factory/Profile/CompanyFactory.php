@@ -55,7 +55,7 @@ final class CompanyFactory extends AbstractFactory implements CompanyFactoryInte
             $this->extractBoolean('isMainBranch', $data),
             $this->extractIntegerOrNull('employees', $data),
             new DateTime($data['foundationDate']),
-            new DateTime($data['registrationDate']),
+            new DateTime($data['registrationDate'] ?? $data['foundationDate']),
             $this->extractAddresses($data)
         );
     }
