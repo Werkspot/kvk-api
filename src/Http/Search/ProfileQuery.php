@@ -8,7 +8,7 @@ final class ProfileQuery implements QueryInterface
 {
     /**
      * @info KvK number, identifying number for a registration in the Netherlands Business Register. Consists of 8 digits
-     * @var int
+     * @var string
      */
     private $kvkNumber;
 
@@ -55,12 +55,12 @@ final class ProfileQuery implements QueryInterface
      */
     private $q;
 
-    public function getKvkNumber(): int
+    public function getKvkNumber(): string
     {
         return $this->kvkNumber;
     }
 
-    public function setKvkNumber(int $kvkNumber): void
+    public function setKvkNumber(string $kvkNumber): void
     {
         $this->kvkNumber = $kvkNumber;
     }
