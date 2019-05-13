@@ -9,9 +9,9 @@ use Werkspot\KvkApi\Client\KvkPaginator;
 use Werkspot\KvkApi\Client\KvkPaginatorInterface;
 use Werkspot\KvkApi\Http\ClientInterface;
 use Werkspot\KvkApi\Http\Endpoint\MapperInterface;
-use Werkspot\KvkApi\Http\Search\ProfileQuery;
+use Werkspot\KvkApi\Http\Search\QueryInterface;
 
-final class KvkClient
+final class KvkClient implements KvkClientInterface, KvkPaginatorAwareInterface
 {
     /**
      * @var ClientInterface
@@ -29,7 +29,7 @@ final class KvkClient
         $this->profileResponseFactory = $profileResponseFactory;
     }
 
-    public function getProfile(ProfileQuery $profileQuery): KvkPaginatorInterface
+    public function getProfile(QueryInterface $profileQuery): KvkPaginatorInterface
     {
         $json = $this->httpClient->getJson($this->httpClient->getEndpoint(MapperInterface::PROFILE, $profileQuery));
         $data = $this->decodeJsonToArray($json);
