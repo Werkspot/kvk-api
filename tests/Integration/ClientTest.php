@@ -19,7 +19,7 @@ final class ClientTest extends TestCase
      * @test
      * @dataProvider getKvkNumbers
      */
-    public function getProfile(int $kvkNumber): void
+    public function getProfile(string $kvkNumber): void
     {
         $client = KvkClientFactory::create('', new Testing());
 
@@ -39,7 +39,7 @@ final class ClientTest extends TestCase
      * @dataProvider getNonExistingKvkNumbers
      * @expectedException \Werkspot\KvkApi\Http\Adapter\Guzzle\Exception\NotFoundException
      */
-    public function getProfile_shouldThrowException(int $kvkNumber): void
+    public function getProfile_shouldThrowException(string $kvkNumber): void
     {
         $client = KvkClientFactory::create('', new Testing());
 

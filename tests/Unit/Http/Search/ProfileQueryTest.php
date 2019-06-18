@@ -16,7 +16,7 @@ final class ProfileQueryTest extends TestCase
      * @test
      * @dataProvider getInteger
      */
-    public function setKvkNumber(int $int): void
+    public function setKvkNumber(string $int): void
     {
         $profileQuery = new ProfileQuery();
         $profileQuery->setKvkNumber($int);

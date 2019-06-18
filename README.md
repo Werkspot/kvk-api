@@ -27,7 +27,7 @@ use Werkspot\KvkApi\ClientFactory;
 $client = ClientFactory::create('<YOUR_API_KEY>', new Production());
 
 $profileQuery = new ProfileQuery();
-$profileQuery->setKvkNumber(18079951);
+$profileQuery->setKvkNumber('18079951');
 
 $kvkPaginator = $client->getProfile($profileQuery);
 
