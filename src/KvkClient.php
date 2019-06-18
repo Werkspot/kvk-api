@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Werkspot\KvkApi;
 
+use function json_encode;
 use Werkspot\KvkApi\Client\Factory\KvkPaginatorFactoryInterface;
 use Werkspot\KvkApi\Client\KvkPaginator;
 use Werkspot\KvkApi\Client\KvkPaginatorInterface;
+use Werkspot\KvkApi\Exception\KvkApiException;
 use Werkspot\KvkApi\Http\ClientInterface;
 use Werkspot\KvkApi\Http\Endpoint\MapperInterface;
 use Werkspot\KvkApi\Http\Search\QueryInterface;
@@ -55,6 +57,22 @@ final class KvkClient implements KvkClientInterface, KvkPaginatorAwareInterface
 
     private function decodeJsonToArray(string $json): array
     {
-        return json_decode($json, true)['data'];
+        $jsonPayload = json_decode($json, true);
+
+        if (!isset($jsonPayload['data']) && !isset($jsonPayload['error'])) {
+            throw new KvkApiException(
+                "Unknown payload: \n"
+                . $json
+            );
+        }
+
+        if (!isset($jsonPayload['data'])) {
+            throw new KvkApiException(
+                $jsonPayload['error']['message'] . ': ' . $jsonPayload['error']['reason'],
+                $jsonPayload['error']['code']
+            );
+        }
+
+        return $jsonPayload['data'];
     }
 }

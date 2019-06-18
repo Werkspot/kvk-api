@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Werkspot\KvkApi\Test;
 
+use function json_encode;
 use Mockery;
 use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
@@ -40,6 +41,66 @@ final class KvkClientTest extends TestCase
         $profileResponseFactory->shouldReceive('fromProfileData')->with($data)->once()->andReturn($this->getProfileResponce());
 
         $client = new KvkClient($adapter, $profileResponseFactory);
+        $client->getProfile($profileQuery);
+    }
+
+    /**
+     * @test
+     */
+    public function getProfileCanHandleApiErrors(): void
+    {
+        $code = 404;
+        $message = 'NotFound';
+        $reason = 'No companies found for the given query.';
+        $profileQuery = new ProfileQuery();
+        $response = $this->getResponse();
+        $json = <<<RESPONSE
+{
+  "apiVersion": "2.0",
+  "meta": {},
+  "error": {
+    "code": $code,
+    "message": "$message",
+    "reason": "$reason"
+  }
+}
+RESPONSE;
+
+        $adapter = $this->getAdapter();
+        $adapter->shouldReceive('getEndpoint')->with(MapperInterface::PROFILE, $profileQuery)->once()->andReturn(
+            $response
+        );
+        $adapter->shouldReceive('getJson')->with($response)->once()->andReturn($json);
+
+        $client = new KvkClient($adapter, $this->getProfileResponseFactory());
+        $this->expectExceptionCode(404);
+        $this->expectExceptionMessage($message . ': ' . $reason);
+        $client->getProfile($profileQuery);
+    }
+
+    /**
+     * @test
+     */
+    public function getProfileCanHandleUnknownPayload(): void
+    {
+        $profileQuery = new ProfileQuery();
+        $response = $this->getResponse();
+        $json = <<<RESPONSE
+{
+  "apiVersion": "2.0",
+  "meta": {},
+  "bladibla": "bladibla"
+}
+RESPONSE;
+
+        $adapter = $this->getAdapter();
+        $adapter->shouldReceive('getEndpoint')->with(MapperInterface::PROFILE, $profileQuery)->once()->andReturn(
+            $response
+        );
+        $adapter->shouldReceive('getJson')->with($response)->once()->andReturn($json);
+
+        $client = new KvkClient($adapter, $this->getProfileResponseFactory());
+        $this->expectExceptionMessageRegExp('/^Unknown payload.*/');
         $client->getProfile($profileQuery);
     }
 
