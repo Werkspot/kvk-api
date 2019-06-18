@@ -19,7 +19,7 @@ use Werkspot\KvkApi\Tests\Unit\MockeryAssertionTrait;
 /**
  * @small
  */
-final class ClientTest extends TestCase
+final class KvkClientTest extends TestCase
 {
     use MockeryAssertionTrait;
 

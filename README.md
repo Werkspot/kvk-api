@@ -22,9 +22,9 @@ Usage
 ```php
 use Werkspot\KvkApi\Http\Endpoint\Production;
 use Werkspot\KvkApi\Http\Search\ProfileQuery;
-use Werkspot\KvkApi\ClientFactory;
+use Werkspot\KvkApi\KvkClientFactory;
 
-$client = ClientFactory::create('<YOUR_API_KEY>', new Production());
+$client = KvkClientFactory::create('<YOUR_API_KEY>', new Production());
 
 $profileQuery = new ProfileQuery();
 $profileQuery->setKvkNumber('18079951');
