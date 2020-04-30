@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 use Werkspot\KvkApi\Client\Profile\Company;
 use Werkspot\KvkApi\Http\Endpoint\Testing;
 use Werkspot\KvkApi\Http\Search\ProfileQuery;
+use Werkspot\KvkApi\Http\Search\SearchQuery;
 use Werkspot\KvkApi\KvkClientFactory;
 
 /**
@@ -49,6 +50,25 @@ final class ClientTest extends TestCase
         $profileQuery->setKvkNumber($kvkNumber);
 
         $client->getProfile($profileQuery);
+    }
+
+    /**
+     * @test
+     * @dataProvider getKvkNumbers
+     */
+    public function fetch_search(string $kvkNumber): void
+    {
+        $client = KvkClientFactory::create('', new Testing());
+
+        $searchQuery = new SearchQuery();
+        $searchQuery->setKvkNumber($kvkNumber);
+
+        $profileResponse = $client->fetchSearch($searchQuery);
+
+        foreach ($profileResponse->getItems() as $company) {
+            self::assertInstanceOf(Company::class, $company);
+            self::assertEquals($kvkNumber, $company->getKvkNumber());
+        }
     }
 
     public function getKvkNumbers(): array
