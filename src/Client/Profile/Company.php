@@ -33,7 +33,7 @@ final class Company
         ?string $branchNumber = null,
         ?int $rsin = null,
         TradeNames $tradeNames,
-        string $legalForm,
+        ?string $legalForm,
         ?array $businessActivities = null,
         bool $entryInBusinessRegister,
         bool $commercialActivities,
@@ -41,7 +41,7 @@ final class Company
         bool $legalPerson,
         bool $branch,
         bool $mainBranch,
-        int $employees,
+        ?int $employees,
         DateTime $foundationDate,
         DateTime $registrationDate,
         ?array $addresses = null

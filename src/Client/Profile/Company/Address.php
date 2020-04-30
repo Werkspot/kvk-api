@@ -22,7 +22,7 @@ final class Address
 
     public function __construct(
         string $type,
-        string $bagId,
+        ?string $bagId,
         string $street,
         string $houseNumber,
         ?string $houseNumberAddition,
