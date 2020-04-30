@@ -18,7 +18,7 @@ $ composer require werkspot/kvk-api
 
 Usage
 -----
-
+profile query
 ```php
 use Werkspot\KvkApi\Http\Endpoint\Production;
 use Werkspot\KvkApi\Http\Search\ProfileQuery;
@@ -34,6 +34,22 @@ $kvkPaginator = $client->getProfile($profileQuery);
 foreach ($kvkPaginator->getItems() as $company) {
     // {your code}
 }
+
+// get next set of data
+$kvkPaginator = $client->getNextPage($kvkPaginator);
+```
+Search query
+```php
+use Werkspot\KvkApi\Http\Endpoint\Production;
+use Werkspot\KvkApi\Http\Search\SearchQuery;
+use Werkspot\KvkApi\KvkClientFactory;
+
+$client = KvkClientFactory::create('<YOUR_API_KEY>', new Production());
+
+
+$searchQuery = new SearchQuery();
+$searchQuery->setStreet('ABEBE Bikilalaan');
+$kvkPaginator = $client->fetchSearch($searchQuery);
 
 // get next set of data
 $kvkPaginator = $client->getNextPage($kvkPaginator);

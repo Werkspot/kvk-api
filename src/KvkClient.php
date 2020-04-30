@@ -37,6 +37,18 @@ final class KvkClient implements KvkClientInterface, KvkPaginatorAwareInterface
         return $this->profileResponseFactory->fromProfileData($data);
     }
 
+    /**
+     * Execute search query
+     * @author Patrick Development <info@patrickdevelopment.nl>
+     */
+    public function fetchSearch(QueryInterface $profileQuery): KvkPaginatorInterface
+    {
+        $json = $this->httpClient->getJson($this->httpClient->getEndpoint(MapperInterface::SEARCH, $profileQuery));
+        $data = $this->decodeJsonToArray($json);
+
+        return $this->profileResponseFactory->fromProfileData($data);
+    }
+
     public function getNextPage(KvkPaginatorInterface $kvkPaginator): KvkPaginatorInterface
     {
         $json = $this->httpClient->getJson($this->httpClient->getUrl($kvkPaginator->getNextUrl()));
