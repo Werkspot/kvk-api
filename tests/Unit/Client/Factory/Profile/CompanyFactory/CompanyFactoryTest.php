@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Werkspot\KvkApi\Tests\Unit\Client\Factory\Profile\CompanyFactory;
+namespace Werkspot\KvkApi\Test\Unit\Client\Factory\Profile\CompanyFactory;
 
 use Mockery;
 use Mockery\MockInterface;
@@ -13,7 +13,7 @@ use Werkspot\KvkApi\Client\Factory\Profile\Company\TradeNamesFactoryInterface;
 use Werkspot\KvkApi\Client\Factory\Profile\CompanyFactory;
 use Werkspot\KvkApi\Client\Profile\Company;
 use Werkspot\KvkApi\Client\Profile\Company\TradeNames;
-use Werkspot\KvkApi\Tests\Unit\MockeryAssertionTrait;
+use Werkspot\KvkApi\Test\Unit\MockeryAssertionTrait;
 
 /**
  * @small
@@ -26,7 +26,7 @@ abstract class CompanyFactoryTest extends TestCase
      * @test
      * @dataProvider getCompanyData
      */
-    public function fromArray(array $data): void
+    public function from_array(array $data): void
     {
         $tradeNamesFactory = $this->getTradeNamesFactory();
         $tradeNamesFactory->shouldReceive('fromArray')
@@ -49,6 +49,7 @@ abstract class CompanyFactoryTest extends TestCase
     }
 
     abstract public function assertData(array $data, Company $company);
+
     abstract public function getCompanyData(): array;
 
     /**

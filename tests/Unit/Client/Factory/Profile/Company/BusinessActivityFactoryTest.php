@@ -2,13 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Werkspot\KvkApi\Test\Client\Factory\Profile\Company;
+namespace Werkspot\KvkApi\Test\Unit\Client\Factory\Profile\Company;
 
 use PHPUnit\Framework\TestCase;
 use Werkspot\KvkApi\Client\Factory\Profile\Company\BusinessActivityFactory;
 
 /**
  * @small
+ *
+ * @internal
  */
 final class BusinessActivityFactoryTest extends TestCase
 {
@@ -16,7 +18,7 @@ final class BusinessActivityFactoryTest extends TestCase
      * @test
      * @dataProvider getArrayData
      */
-    public function fromArray(array $data): void
+    public function from_array(array $data): void
     {
         $factory = new BusinessActivityFactory();
 

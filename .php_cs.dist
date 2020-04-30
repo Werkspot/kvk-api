@@ -6,15 +6,32 @@ return PhpCsFixer\Config::create()
         'phpdoc_summary' => false,
         'concat_space' => ['spacing' => 'one'],
         'no_multiline_whitespace_before_semicolons' => true,
+        'no_superfluous_phpdoc_tags' => true,
         'no_useless_else' => true,
         'no_useless_return' => true,
-        'ordered_imports' => true,
+        'ordered_imports' => [
+            'sort_algorithm' => 'alpha',
+            'imports_order' => ['class', 'function', 'const'],
+        ],
         'phpdoc_order' => true,
         'array_syntax' => ['syntax' => 'short'],
         'no_short_echo_tag' => true,
+        'php_unit_size_class' => ['group' => 'small'],
+        'php_unit_method_casing' => ['case' => 'snake_case'],
+        'php_unit_internal_class' => true,
         'pre_increment' => false,
-        'yoda_style' => false,
-        'blank_line_before_statement' => ['statements' => ['break', 'continue', 'declare', 'return', 'throw', 'try']],
+        'return_type_declaration' => ['space_before' => 'none'],
+        'yoda_style' => [
+            'equal' => false,
+            'identical' => false,
+        ],
+        'class_definition' => [
+            'multiLineExtendsEachSingleLine' => true,
+        ],
+        'single_line_throw' => false,
+        'class_attributes_separation' => [
+            'elements' => ['property', 'method'],
+        ],
     ])
      ->setFinder(
         PhpCsFixer\Finder::create()

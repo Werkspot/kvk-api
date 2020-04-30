@@ -7,7 +7,9 @@ namespace Werkspot\KvkApi\Client\Profile\Company;
 final class BusinessActivity
 {
     private $sbiCode;
+
     private $sbiCodeDescription;
+
     private $mainSbi;
 
     public function __construct(int $sbiCode, string $sbiCodeDescription, bool $mainSbi)

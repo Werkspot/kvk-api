@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Werkspot\KvkApi\Test\Http\Endpoint;
+namespace Werkspot\KvkApi\Test\Unit\Http\Endpoint;
 
 use PHPUnit\Framework\TestCase;
 use Werkspot\KvkApi\Http\Endpoint\MapperInterface;
@@ -10,6 +10,8 @@ use Werkspot\KvkApi\Http\Endpoint\Production;
 
 /**
  * @small
+ *
+ * @internal
  */
 final class ProductionTest extends TestCase
 {
@@ -17,7 +19,7 @@ final class ProductionTest extends TestCase
      * @test
      * @dataProvider getEndpoints
      */
-    public function canMapAllKeys(string $endpointKey):void
+    public function can_map_all_keys(string $endpointKey): void
     {
         $endpoint = new Production();
         $endpoint = $endpoint->map($endpointKey);
@@ -30,7 +32,7 @@ final class ProductionTest extends TestCase
      * @test
      * @expectedException \Werkspot\KvkApi\Http\Endpoint\Exception\EndpointCouldNotBeMappedException
      */
-    public function mappingInvalidKeyThrowsException():void
+    public function mapping_invalid_key_throws_exception(): void
     {
         $endpoint = new Production();
         $endpoint->map('invalid');

@@ -15,6 +15,7 @@ build:
             version: 7.1
     tests:
         override:
+            -   command: 'make test-cs'
             -
                 command: 'make test-coverage'
                 coverage:

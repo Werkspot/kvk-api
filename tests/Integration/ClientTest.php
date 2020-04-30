@@ -2,16 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Werkspot\KvkApi\Tests\Integration;
+namespace Werkspot\KvkApi\Test\Integration;
 
 use PHPUnit\Framework\TestCase;
 use Werkspot\KvkApi\Client\Profile\Company;
 use Werkspot\KvkApi\Http\Endpoint\Testing;
 use Werkspot\KvkApi\Http\Search\ProfileQuery;
+use Werkspot\KvkApi\Http\Search\SearchQuery;
 use Werkspot\KvkApi\KvkClientFactory;
 
 /**
  * @large
+ *
+ * @internal
  */
 final class ClientTest extends TestCase
 {
@@ -19,7 +22,7 @@ final class ClientTest extends TestCase
      * @test
      * @dataProvider getKvkNumbers
      */
-    public function getProfile(string $kvkNumber): void
+    public function get_profile(string $kvkNumber): void
     {
         $client = KvkClientFactory::create('', new Testing());
 
@@ -39,7 +42,7 @@ final class ClientTest extends TestCase
      * @dataProvider getNonExistingKvkNumbers
      * @expectedException \Werkspot\KvkApi\Http\Adapter\Guzzle\Exception\NotFoundException
      */
-    public function getProfile_shouldThrowException(string $kvkNumber): void
+    public function get_profile_should_throw_exception(string $kvkNumber): void
     {
         $client = KvkClientFactory::create('', new Testing());
 
@@ -47,6 +50,25 @@ final class ClientTest extends TestCase
         $profileQuery->setKvkNumber($kvkNumber);
 
         $client->getProfile($profileQuery);
+    }
+
+    /**
+     * @test
+     * @dataProvider getKvkNumbers
+     */
+    public function fetch_search(string $kvkNumber): void
+    {
+        $client = KvkClientFactory::create('', new Testing());
+
+        $searchQuery = new SearchQuery();
+        $searchQuery->setKvkNumber($kvkNumber);
+
+        $profileResponse = $client->fetchSearch($searchQuery);
+
+        foreach ($profileResponse->getItems() as $company) {
+            self::assertInstanceOf(Company::class, $company);
+            self::assertEquals($kvkNumber, $company->getKvkNumber());
+        }
     }
 
     public function getKvkNumbers(): array

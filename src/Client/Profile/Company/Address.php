@@ -10,19 +10,28 @@ use Werkspot\KvkApi\Client\Profile\Company\Address\RijksDriehoek;
 final class Address
 {
     private $type;
+
     private $bagId;
+
     private $street;
+
     private $houseNumber;
+
     private $houseNumberAddition;
+
     private $postalCode;
+
     private $city;
+
     private $country;
+
     private $gpsCoordinates;
+
     private $rijksDriehoek;
 
     public function __construct(
         string $type,
-        string $bagId,
+        ?string $bagId,
         string $street,
         string $houseNumber,
         ?string $houseNumberAddition,

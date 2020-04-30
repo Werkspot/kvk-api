@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Werkspot\KvkApi\Test;
 
-use function json_encode;
 use Mockery;
 use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
@@ -15,10 +14,13 @@ use Werkspot\KvkApi\Http\ClientInterface;
 use Werkspot\KvkApi\Http\Endpoint\MapperInterface;
 use Werkspot\KvkApi\Http\Search\ProfileQuery;
 use Werkspot\KvkApi\KvkClient;
-use Werkspot\KvkApi\Tests\Unit\MockeryAssertionTrait;
+use Werkspot\KvkApi\Test\Unit\MockeryAssertionTrait;
+use function json_encode;
 
 /**
  * @small
+ *
+ * @internal
  */
 final class KvkClientTest extends TestCase
 {
@@ -27,7 +29,7 @@ final class KvkClientTest extends TestCase
     /**
      * @test
      */
-    public function getProfile(): void
+    public function get_profile(): void
     {
         $profileQuery = new ProfileQuery();
         $response = $this->getResponse();
@@ -47,7 +49,7 @@ final class KvkClientTest extends TestCase
     /**
      * @test
      */
-    public function getProfileCanHandleApiErrors(): void
+    public function get_profile_can_handle_api_errors(): void
     {
         $code = 404;
         $message = 'NotFound';
@@ -81,7 +83,7 @@ RESPONSE;
     /**
      * @test
      */
-    public function getProfileCanHandleUnknownPayload(): void
+    public function get_profile_can_handle_unknown_payload(): void
     {
         $profileQuery = new ProfileQuery();
         $response = $this->getResponse();
@@ -107,7 +109,7 @@ RESPONSE;
     /**
      * @test
      */
-    public function getNextPage(): void
+    public function get_next_page(): void
     {
         $response = $this->getResponse();
         $profileResponse = $this->getProfileResponce();
@@ -127,7 +129,7 @@ RESPONSE;
     /**
      * @test
      */
-    public function getPreviousPage(): void
+    public function get_previous_page(): void
     {
         $response = $this->getResponse();
         $profileResponse = $this->getProfileResponce();

@@ -15,7 +15,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Werkspot\\KvkApi\\Tests\\": ["tests/"]
+            "Werkspot\\KvkApi\\Test\\": ["tests/"]
         }
     },
     "require": {

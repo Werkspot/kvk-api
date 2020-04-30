@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Werkspot\KvkApi\Tests\Unit\Http\Adapter\Guzzle\Exception;
+namespace Werkspot\KvkApi\Test\Unit\Http\Adapter\Guzzle\Exception;
 
 use GuzzleHttp\Exception\RequestException;
 use Mockery;
@@ -13,6 +13,8 @@ use Werkspot\KvkApi\Http\Adapter\Guzzle\Exception\Handler;
 
 /**
  * @small
+ *
+ * @internal
  */
 final class HandlerTest extends TestCase
 {
@@ -20,7 +22,7 @@ final class HandlerTest extends TestCase
      * @test
      * @expectedException \Werkspot\KvkApi\Exception\KvkApiException
      */
-    public function handleRequestException_shouldThrowGenericException(): void
+    public function handle_request_exception_should_throw_generic_exception(): void
     {
         Handler::handleRequestException($this->getException());
     }
@@ -29,7 +31,7 @@ final class HandlerTest extends TestCase
      * @test
      * @expectedException \Werkspot\KvkApi\Http\Adapter\Guzzle\Exception\NotFoundException
      */
-    public function handleRequestException_shouldThrowNotFoundException(): void
+    public function handle_request_exception_should_throw_not_found_exception(): void
     {
         Handler::handleRequestException($this->getException(404));
     }
