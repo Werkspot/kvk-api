@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Werkspot\KvkApi;
 
-use function json_encode;
 use Werkspot\KvkApi\Client\Factory\KvkPaginatorFactoryInterface;
-use Werkspot\KvkApi\Client\KvkPaginator;
 use Werkspot\KvkApi\Client\KvkPaginatorInterface;
 use Werkspot\KvkApi\Exception\KvkApiException;
 use Werkspot\KvkApi\Http\ClientInterface;

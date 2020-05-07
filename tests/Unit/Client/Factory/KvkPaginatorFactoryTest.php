@@ -15,6 +15,8 @@ use Werkspot\KvkApi\Client\Profile\Company\TradeNames;
 
 /**
  * @small
+ *
+ * @internal
  */
 final class KvkPaginatorFactoryTest extends TestCase
 {
@@ -22,7 +24,7 @@ final class KvkPaginatorFactoryTest extends TestCase
      * @test
      * @dataProvider getResponseData
      */
-    public function fromData(array $data): void
+    public function from_data(array $data): void
     {
         $companyFactory = $this->getCompanyFactory();
         foreach ($data['items'] as $company) {

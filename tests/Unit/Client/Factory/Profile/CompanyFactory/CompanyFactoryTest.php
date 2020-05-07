@@ -26,7 +26,7 @@ abstract class CompanyFactoryTest extends TestCase
      * @test
      * @dataProvider getCompanyData
      */
-    public function fromArray(array $data): void
+    public function from_array(array $data): void
     {
         $tradeNamesFactory = $this->getTradeNamesFactory();
         $tradeNamesFactory->shouldReceive('fromArray')
@@ -49,6 +49,7 @@ abstract class CompanyFactoryTest extends TestCase
     }
 
     abstract public function assertData(array $data, Company $company);
+
     abstract public function getCompanyData(): array;
 
     /**

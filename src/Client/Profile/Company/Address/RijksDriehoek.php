@@ -7,7 +7,9 @@ namespace Werkspot\KvkApi\Client\Profile\Company\Address;
 final class RijksDriehoek
 {
     private $x;
+
     private $y;
+
     private $z;
 
     public function __construct(float $x, float $y, float $z)

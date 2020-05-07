@@ -10,6 +10,8 @@ use Werkspot\KvkApi\Http\Endpoint\Testing;
 
 /**
  * @small
+ *
+ * @internal
  */
 final class TestingTest extends TestCase
 {
@@ -17,7 +19,7 @@ final class TestingTest extends TestCase
      * @test
      * @dataProvider getEndpoints
      */
-    public function canMapAllKeys(string $endpointKey):void
+    public function can_map_all_keys(string $endpointKey): void
     {
         $endpoint = new Testing();
         $endpoint = $endpoint->map($endpointKey);
@@ -30,7 +32,7 @@ final class TestingTest extends TestCase
      * @test
      * @expectedException \Werkspot\KvkApi\Http\Endpoint\Exception\EndpointCouldNotBeMappedException
      */
-    public function mappingInvalidKeyThrowsException():void
+    public function mapping_invalid_key_throws_exception(): void
     {
         $endpoint = new Testing();
         $endpoint->map('invalid');

@@ -7,6 +7,7 @@ namespace Werkspot\KvkApi\Client\Profile\Company\Address;
 final class GpsCoordinates
 {
     private $latitude;
+
     private $longitude;
 
     public function __construct(float $latitude, float $longitude)

@@ -9,6 +9,8 @@ use Werkspot\KvkApi\Client\Factory\Profile\Company\BusinessActivityFactory;
 
 /**
  * @small
+ *
+ * @internal
  */
 final class BusinessActivityFactoryTest extends TestCase
 {
@@ -16,7 +18,7 @@ final class BusinessActivityFactoryTest extends TestCase
      * @test
      * @dataProvider getArrayData
      */
-    public function fromArray(array $data): void
+    public function from_array(array $data): void
     {
         $factory = new BusinessActivityFactory();
 

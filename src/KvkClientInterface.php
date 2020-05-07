@@ -11,4 +11,3 @@ interface KvkClientInterface
 {
     public function getProfile(QueryInterface $profileQuery): KvkPaginatorInterface;
 }
-

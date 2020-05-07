@@ -7,8 +7,11 @@ namespace Werkspot\KvkApi\Client\Profile\Company;
 final class TradeNames
 {
     private $businessName;
+
     private $shortBusinessName;
+
     private $currentTradeNames;
+
     private $currentStatutoryNames;
 
     public function __construct(
