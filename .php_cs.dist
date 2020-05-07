@@ -28,7 +28,6 @@ return PhpCsFixer\Config::create()
         'class_definition' => [
             'multiLineExtendsEachSingleLine' => true,
         ],
-        'heredoc_indentation' => true,
         'single_line_throw' => false,
         'class_attributes_separation' => [
             'elements' => ['property', 'method'],
