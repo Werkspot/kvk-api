@@ -58,18 +58,25 @@ $kvkPaginator = $client->getNextPage($kvkPaginator);
 Tests
 -----
 
-This package comes with 2 types of tests: Unit and Integration.
-To run them you can use the make commands in the projects root.
+To run the tests you can use the make commands in the projects root.
 
 ```bash
+$ make test-cs
 $ make test-unit
 $ make test-integration
+```
+
+You can also automatically fix the coding standards with:
+
+```bash
+$ make fix-cs
 ```
 
 Author
 -------
 
-KVK API has been developed by [LauLaman].
+KVK API has been created by [LauLaman] and is currently maintained by the developers at [Werkspot].
 
 [kvk-api-documentation]: https://developers.kvk.nl/documentation
 [LauLaman]: https://github.com/LauLaman
+[Werkspot]: https://www.werkspot.nl

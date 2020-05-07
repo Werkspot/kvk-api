@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Werkspot\KvkApi\Test\Client\Factory;
+namespace Werkspot\KvkApi\Test\Unit\Client\Factory;
 
 use DateTime;
 use Mockery;
@@ -15,6 +15,8 @@ use Werkspot\KvkApi\Client\Profile\Company\TradeNames;
 
 /**
  * @small
+ *
+ * @internal
  */
 final class KvkPaginatorFactoryTest extends TestCase
 {
@@ -22,7 +24,7 @@ final class KvkPaginatorFactoryTest extends TestCase
      * @test
      * @dataProvider getResponseData
      */
-    public function fromData(array $data): void
+    public function from_data(array $data): void
     {
         $companyFactory = $this->getCompanyFactory();
         foreach ($data['items'] as $company) {

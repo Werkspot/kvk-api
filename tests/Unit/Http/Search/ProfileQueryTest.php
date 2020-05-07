@@ -2,13 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Werkspot\KvkApi\Test\Http\Search;
+namespace Werkspot\KvkApi\Test\Unit\Http\Search;
 
 use PHPUnit\Framework\TestCase;
 use Werkspot\KvkApi\Http\Search\ProfileQuery;
 
 /**
  * @small
+ *
+ * @internal
  */
 final class ProfileQueryTest extends TestCase
 {
@@ -16,7 +18,7 @@ final class ProfileQueryTest extends TestCase
      * @test
      * @dataProvider getInteger
      */
-    public function setKvkNumber(string $int): void
+    public function set_kvk_number(string $int): void
     {
         $profileQuery = new ProfileQuery();
         $profileQuery->setKvkNumber($int);
@@ -30,7 +32,7 @@ final class ProfileQueryTest extends TestCase
      * @test
      * @dataProvider getString
      */
-    public function setBranchNumber(string $string): void
+    public function set_branch_number(string $string): void
     {
         $profileQuery =  new ProfileQuery();
         $profileQuery->setBranchNumber($string);
@@ -44,7 +46,7 @@ final class ProfileQueryTest extends TestCase
      * @test
      * @dataProvider getInteger
      */
-    public function setRsin(int $int): void
+    public function set_rsin(int $int): void
     {
         $profileQuery = new ProfileQuery();
         $profileQuery->setRsin($int);
@@ -58,7 +60,7 @@ final class ProfileQueryTest extends TestCase
      * @test
      * @dataProvider getBoolean
      */
-    public function setIncludeInactiveRegistrations(bool $boolean): void
+    public function set_include_inactive_registrations(bool $boolean): void
     {
         $profileQuery =  new ProfileQuery();
         $profileQuery->setIncludeInactiveRegistrations($boolean);
@@ -72,7 +74,7 @@ final class ProfileQueryTest extends TestCase
      * @test
      * @dataProvider getBoolean
      */
-    public function setRestrictToMainBranch(bool $boolean): void
+    public function set_restrict_to_main_branch(bool $boolean): void
     {
         $profileQuery =  new ProfileQuery();
         $profileQuery->setRestrictToMainBranch($boolean);
@@ -86,7 +88,7 @@ final class ProfileQueryTest extends TestCase
      * @test
      * @dataProvider getString
      */
-    public function setSite(string $string): void
+    public function set_site(string $string): void
     {
         $profileQuery =  new ProfileQuery();
         $profileQuery->setSite($string);
@@ -100,7 +102,7 @@ final class ProfileQueryTest extends TestCase
      * @test
      * @dataProvider getString
      */
-    public function setContext(string $string): void
+    public function set_context(string $string): void
     {
         $profileQuery =  new ProfileQuery();
         $profileQuery->setContext($string);
@@ -114,7 +116,7 @@ final class ProfileQueryTest extends TestCase
      * @test
      * @dataProvider getString
      */
-    public function setQ(string $string): void
+    public function set_q(string $string): void
     {
         $profileQuery =  new ProfileQuery();
         $profileQuery->setQ($string);

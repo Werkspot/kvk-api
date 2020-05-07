@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Werkspot\KvkApi\Tests\Unit\Http\Adapter;
+namespace Werkspot\KvkApi\Test\Unit\Http\Adapter;
 
 use GuzzleHttp\ClientInterface as GuzzleClientInterface;
 use GuzzleHttp\Exception\RequestException;
@@ -13,10 +13,12 @@ use Psr\Http\Message\ResponseInterface;
 use Werkspot\KvkApi\Http\Adapter\Guzzle\Client;
 use Werkspot\KvkApi\Http\Endpoint\MapperInterface;
 use Werkspot\KvkApi\Http\Search\QueryInterface;
-use Werkspot\KvkApi\Tests\Unit\MockeryAssertionTrait;
+use Werkspot\KvkApi\Test\Unit\MockeryAssertionTrait;
 
 /**
  * @small
+ *
+ * @internal
  */
 final class GuzzleTest extends TestCase
 {
@@ -25,7 +27,7 @@ final class GuzzleTest extends TestCase
     /**
      * @test
      */
-    public function getEndpoint(): void
+    public function get_endpoint(): void
     {
         $endpoint = MapperInterface::PROFILE;
         $url = 'http://example.com';
@@ -48,7 +50,7 @@ final class GuzzleTest extends TestCase
     /**
      * @test
      */
-    public function getUrl(): void
+    public function get_url(): void
     {
         $url = 'http://example.com';
 
@@ -66,7 +68,7 @@ final class GuzzleTest extends TestCase
      *
      * @expectedException \Werkspot\KvkApi\Exception\KvkApiException
      */
-    public function getUrl_shouldThrowException(): void
+    public function get_url_should_throw_exception(): void
     {
         $url = 'http://example.com';
 
@@ -82,7 +84,7 @@ final class GuzzleTest extends TestCase
     /**
      * @test
      */
-    public function getJson(): void
+    public function get_json(): void
     {
         $response = $this->getResponse();
         $response->shouldReceive('getBody')->once()->andReturnSelf();

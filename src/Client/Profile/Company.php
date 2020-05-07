@@ -12,20 +12,35 @@ use Werkspot\KvkApi\Client\Profile\Company\TradeNames;
 final class Company
 {
     private $kvkNumber;
+
     private $branchNumber;
+
     private $rsin;
+
     private $tradeNames;
+
     private $legalForm;
+
     private $businessActivities;
+
     private $entryInBusinessRegister;
+
     private $commercialActivities;
+
     private $nonMailingIndication;
+
     private $legalPerson;
+
     private $branch;
+
     private $mainBranch;
+
     private $employees;
+
     private $foundationDate;
+
     private $registrationDate;
+
     private $addresses;
 
     public function __construct(

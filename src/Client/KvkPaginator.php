@@ -10,10 +10,15 @@ use Werkspot\KvkApi\Client\Profile\Company as ProfileCompany;
 final class KvkPaginator implements KvkPaginatorInterface
 {
     private $itemsPerPage;
+
     private $startPage;
+
     private $totalItems;
+
     private $items;
+
     private $nextUrl;
+
     private $previousUrl;
 
     public function __construct(
