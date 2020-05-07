@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Werkspot\KvkApi\Tests\Integration;
+namespace Werkspot\KvkApi\Test\Integration;
 
 use PHPUnit\Framework\TestCase;
 use Werkspot\KvkApi\Client\Profile\Company;

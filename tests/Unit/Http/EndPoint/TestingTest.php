@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Werkspot\KvkApi\Test\Http\Endpoint;
+namespace Werkspot\KvkApi\Test\Unit\Http\Endpoint;
 
 use PHPUnit\Framework\TestCase;
 use Werkspot\KvkApi\Http\Endpoint\MapperInterface;

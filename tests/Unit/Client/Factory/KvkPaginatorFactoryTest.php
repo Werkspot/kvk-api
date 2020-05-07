@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Werkspot\KvkApi\Test\Client\Factory;
+namespace Werkspot\KvkApi\Test\Unit\Client\Factory;
 
 use DateTime;
 use Mockery;

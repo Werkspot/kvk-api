@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 
-namespace Werkspot\KvkApi\Tests\Unit;
+namespace Werkspot\KvkApi\Test\Unit;
 
 use Mockery;
 

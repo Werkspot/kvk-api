@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Werkspot\KvkApi\Test\Client\Factory\Profile\CompanyFactory;
+namespace Werkspot\KvkApi\Test\Unit\Client\Factory\Profile\CompanyFactory;
 
 use Werkspot\KvkApi\Client\Profile\Company;
 use Werkspot\KvkApi\Client\Profile\Company\TradeNames;
-use Werkspot\KvkApi\Tests\Unit\Client\Factory\Profile\CompanyFactory\CompanyFactoryTest;
 
 /**
  * @small
