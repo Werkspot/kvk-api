@@ -32,8 +32,7 @@ final class CompanyFactory extends AbstractFactory implements CompanyFactoryInte
         TradeNamesFactoryInterface $tradeNamesFactory,
         BusinessActivityFactoryInterface $businessActivityFactory,
         AddressFactoryInterface $addressFactory
-    )
-    {
+    ) {
         $this->tradeNamesFactory = $tradeNamesFactory;
         $this->businessActivityFactory = $businessActivityFactory;
         $this->addressFactory = $addressFactory;
@@ -56,7 +55,7 @@ final class CompanyFactory extends AbstractFactory implements CompanyFactoryInte
             $this->extractBoolean('isMainBranch', $data),
             $this->extractIntegerOrNull('employees', $data),
             new DateTime($data['foundationDate'] ?? 'NOW'),
-            new DateTime( $data['registrationDate'] ?? $data['foundationDate'] ?? 'NOW'),
+            new DateTime($data['registrationDate'] ?? $data['foundationDate'] ?? 'NOW'),
             $this->extractAddresses($data)
         );
     }
