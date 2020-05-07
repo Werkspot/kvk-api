@@ -126,6 +126,62 @@ final class SearchQueryTest extends TestCase
         self::assertSame($string, $query['q']);
     }
 
+    /**
+     * @test
+     * @dataProvider getString
+     */
+    public function set_housenumber(string $string): void
+    {
+        $searchQuery =  new SearchQuery();
+        $searchQuery->setHouseNumber($string);
+        self::assertSame($string, $searchQuery->getHouseNumber());
+
+        $query = $searchQuery->get();
+        self::assertSame($string, $query['houseNumber']);
+    }
+
+    /**
+     * @test
+     * @dataProvider getString
+     */
+    public function set_street(string $string): void
+    {
+        $searchQuery =  new SearchQuery();
+        $searchQuery->setStreet($string);
+        self::assertSame($string, $searchQuery->getStreet());
+
+        $query = $searchQuery->get();
+        self::assertSame($string, $query['street']);
+    }
+
+    /**
+     * @test
+     * @dataProvider getString
+     */
+    public function set_postalcode(string $string): void
+    {
+        $searchQuery =  new SearchQuery();
+        $searchQuery->setPostalCode($string);
+        self::assertSame($string, $searchQuery->getPostalCode());
+
+        $query = $searchQuery->get();
+        self::assertSame($string, $query['postalCode']);
+    }
+
+    /**
+     * @test
+     * @dataProvider getString
+     */
+    public function set_city(string $string): void
+    {
+        $searchQuery =  new SearchQuery();
+        $searchQuery->setCity($string);
+        self::assertSame($string, $searchQuery->getCity());
+
+        $query = $searchQuery->get();
+        self::assertSame($string, $query['city']);
+    }
+
     public function getInteger(): array
     {
         return [
