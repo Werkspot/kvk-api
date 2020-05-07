@@ -9,5 +9,6 @@ use Werkspot\KvkApi\Client\KvkPaginatorInterface;
 interface KvkPaginatorAwareInterface
 {
     public function getNextPage(KvkPaginatorInterface $kvkPaginator): KvkPaginatorInterface;
+
     public function getPreviousPage(KvkPaginatorInterface $kvkPaginator): KvkPaginatorInterface;
 }

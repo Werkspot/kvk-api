@@ -11,6 +11,8 @@ use Werkspot\KvkApi\Client\Profile\Company\Address\RijksDriehoek;
 
 /**
  * @small
+ *
+ * @internal
  */
 final class AddressFactoryTest extends TestCase
 {
@@ -18,7 +20,7 @@ final class AddressFactoryTest extends TestCase
      * @test
      * @dataProvider getAddressData
      */
-    public function fromArray(array $data): void
+    public function from_array(array $data): void
     {
         $factory = new AddressFactory();
 
