@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Werkspot\KvkApi\Test\Http\Search;
+namespace Werkspot\KvkApi\Test\Unit\Http\Search;
 
 use PHPUnit\Framework\TestCase;
 use Werkspot\KvkApi\Http\Search\ProfileQuery;

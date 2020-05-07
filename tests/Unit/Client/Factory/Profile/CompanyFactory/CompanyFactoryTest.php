@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Werkspot\KvkApi\Tests\Unit\Client\Factory\Profile\CompanyFactory;
+namespace Werkspot\KvkApi\Test\Unit\Client\Factory\Profile\CompanyFactory;
 
 use Mockery;
 use Mockery\MockInterface;
@@ -13,7 +13,7 @@ use Werkspot\KvkApi\Client\Factory\Profile\Company\TradeNamesFactoryInterface;
 use Werkspot\KvkApi\Client\Factory\Profile\CompanyFactory;
 use Werkspot\KvkApi\Client\Profile\Company;
 use Werkspot\KvkApi\Client\Profile\Company\TradeNames;
-use Werkspot\KvkApi\Tests\Unit\MockeryAssertionTrait;
+use Werkspot\KvkApi\Test\Unit\MockeryAssertionTrait;
 
 /**
  * @small

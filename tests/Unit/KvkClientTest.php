@@ -14,7 +14,7 @@ use Werkspot\KvkApi\Http\ClientInterface;
 use Werkspot\KvkApi\Http\Endpoint\MapperInterface;
 use Werkspot\KvkApi\Http\Search\ProfileQuery;
 use Werkspot\KvkApi\KvkClient;
-use Werkspot\KvkApi\Tests\Unit\MockeryAssertionTrait;
+use Werkspot\KvkApi\Test\Unit\MockeryAssertionTrait;
 use function json_encode;
 
 /**

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Werkspot\KvkApi\Tests\Unit\Http\Adapter\Guzzle\Exception;
+namespace Werkspot\KvkApi\Test\Unit\Http\Adapter\Guzzle\Exception;
 
 use GuzzleHttp\Exception\RequestException;
 use Mockery;

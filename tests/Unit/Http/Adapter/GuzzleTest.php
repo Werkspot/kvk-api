@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Werkspot\KvkApi\Tests\Unit\Http\Adapter;
+namespace Werkspot\KvkApi\Test\Unit\Http\Adapter;
 
 use GuzzleHttp\ClientInterface as GuzzleClientInterface;
 use GuzzleHttp\Exception\RequestException;
@@ -13,7 +13,7 @@ use Psr\Http\Message\ResponseInterface;
 use Werkspot\KvkApi\Http\Adapter\Guzzle\Client;
 use Werkspot\KvkApi\Http\Endpoint\MapperInterface;
 use Werkspot\KvkApi\Http\Search\QueryInterface;
-use Werkspot\KvkApi\Tests\Unit\MockeryAssertionTrait;
+use Werkspot\KvkApi\Test\Unit\MockeryAssertionTrait;
 
 /**
  * @small
