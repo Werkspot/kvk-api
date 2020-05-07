@@ -53,7 +53,7 @@ $ make test-integration
 You can also automatically fix the coding standards with:
 
 ```bash
-$ make fix-code-standards
+$ make fix-cs
 ```
 
 Author
