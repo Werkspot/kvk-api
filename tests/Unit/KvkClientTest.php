@@ -57,16 +57,16 @@ final class KvkClientTest extends TestCase
         $profileQuery = new ProfileQuery();
         $response = $this->getResponse();
         $json = <<<RESPONSE
-{
-  "apiVersion": "2.0",
-  "meta": {},
-  "error": {
-    "code": $code,
-    "message": "$message",
-    "reason": "$reason"
-  }
-}
-RESPONSE;
+            {
+              "apiVersion": "2.0",
+              "meta": {},
+              "error": {
+                "code": $code,
+                "message": "$message",
+                "reason": "$reason"
+              }
+            }
+            RESPONSE;
 
         $adapter = $this->getAdapter();
         $adapter->shouldReceive('getEndpoint')->with(MapperInterface::PROFILE, $profileQuery)->once()->andReturn(
@@ -88,12 +88,12 @@ RESPONSE;
         $profileQuery = new ProfileQuery();
         $response = $this->getResponse();
         $json = <<<RESPONSE
-{
-  "apiVersion": "2.0",
-  "meta": {},
-  "bladibla": "bladibla"
-}
-RESPONSE;
+            {
+              "apiVersion": "2.0",
+              "meta": {},
+              "bladibla": "bladibla"
+            }
+            RESPONSE;
 
         $adapter = $this->getAdapter();
         $adapter->shouldReceive('getEndpoint')->with(MapperInterface::PROFILE, $profileQuery)->once()->andReturn(

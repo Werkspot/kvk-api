@@ -49,7 +49,7 @@ $client = KvkClientFactory::create('<YOUR_API_KEY>', new Production());
 
 $searchQuery = new SearchQuery();
 $searchQuery->setStreet('ABEBE Bikilalaan');
-$kvkPaginator = $client->getSearch($searchQuery);
+$kvkPaginator = $client->fetchSearch($searchQuery);
 
 // get next set of data
 $kvkPaginator = $client->getNextPage($kvkPaginator);
