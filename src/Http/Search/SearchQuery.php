@@ -7,74 +7,86 @@ namespace Werkspot\KvkApi\Http\Search;
 final class SearchQuery implements QueryInterface
 {
     /**
-     * @info KvK number, identifying number for a registration in the Netherlands Business Register. Consists of 8 digits
+     * KvK number, identifying number for a registration in the Netherlands Business Register. Consists of 8 digits
+     *
      * @var string
      */
     private $kvkNumber;
 
     /**
-     * @info Branch number (Vestigingsnummer), identifying number of a branch. Consists of 12 digits
+     * Branch number (Vestigingsnummer), identifying number of a branch. Consists of 12 digits
+     *
      * @var string
      */
     private $branchNumber;
 
     /**
-     * @info RSIN is an identification number for legal entities and partnerships. Consist of only digits
+     * RSIN is an identification number for legal entities and partnerships. Consist of only digits
+     *
      * @var int
      */
     private $rsin;
 
     /**
-     * @info Street of an address
+     * Street of an address
+     *
      * @var string
      */
     private $street;
 
     /**
-     * @info House number of an address
+     * House number of an address
+     *
      * @var string
      */
     private $houseNumber;
 
     /**
-     * @info Postal code or ZIP code, example 1000AA
+     * Postal code or ZIP code, example 1000AA
+     *
      * @var string
      */
     private $postalCode;
 
     /**
-     * @info City or Town name
+     * City or Town name
+     *
      * @var string
      */
     private $city;
 
     /**
-     * @info Indication  to include searching through inactive dossiers/deregistered companies.
+     * Indication  to include searching through inactive dossiers/deregistered companies.
      * @note History of inactive companies is after 1 January 2012
+     *
      * @var bool
      */
     private $includeInactiveRegistrations;
 
     /**
-     * @info restrictToMainBranch Search is restricted to main branches.
+     * restrictToMainBranch Search is restricted to main branches.
+     *
      * @var bool
      */
     private $restrictToMainBranch;
 
     /**
-     * @info Defines the search collection for the query
+     * Defines the search collection for the query
+     *
      * @var string
      */
     private $site;
 
     /**
-     * @info User can optionally add a context to identify his result later on
+     * User can optionally add a context to identify his result later on
+     *
      * @var string
      */
     private $context;
 
     /**
-     * @info Free format text search for in the compiled search description.
+     * Free format text search for in the compiled search description.
+     *
      * @var string
      */
     private $q;
@@ -84,9 +96,11 @@ final class SearchQuery implements QueryInterface
         return $this->street;
     }
 
-    public function setStreet(string $street): void
+    public function setStreet(string $street): SearchQuery
     {
         $this->street = $street;
+
+        return $this;
     }
 
     public function getHouseNumber(): string
@@ -94,9 +108,11 @@ final class SearchQuery implements QueryInterface
         return $this->houseNumber;
     }
 
-    public function setHouseNumber(string $houseNumber): void
+    public function setHouseNumber(string $houseNumber): SearchQuery
     {
         $this->houseNumber = $houseNumber;
+
+        return $this;
     }
 
     public function getKvkNumber(): string
@@ -104,9 +120,11 @@ final class SearchQuery implements QueryInterface
         return $this->kvkNumber;
     }
 
-    public function setKvkNumber(string $kvkNumber): void
+    public function setKvkNumber(string $kvkNumber): SearchQuery
     {
         $this->kvkNumber = $kvkNumber;
+
+        return $this;
     }
 
     public function getBranchNumber(): string
@@ -114,9 +132,11 @@ final class SearchQuery implements QueryInterface
         return $this->branchNumber;
     }
 
-    public function setBranchNumber(string $branchNumber): void
+    public function setBranchNumber(string $branchNumber): SearchQuery
     {
         $this->branchNumber = $branchNumber;
+
+        return $this;
     }
 
     public function getRsin(): int
@@ -124,9 +144,11 @@ final class SearchQuery implements QueryInterface
         return $this->rsin;
     }
 
-    public function setRsin(int $rsin): void
+    public function setRsin(int $rsin): SearchQuery
     {
         $this->rsin = $rsin;
+
+        return $this;
     }
 
     public function getPostalCode(): string
@@ -134,9 +156,11 @@ final class SearchQuery implements QueryInterface
         return $this->postalCode;
     }
 
-    public function setPostalCode(string $postalCode): void
+    public function setPostalCode(string $postalCode): SearchQuery
     {
         $this->postalCode = $postalCode;
+
+        return $this;
     }
 
     public function getCity(): string
@@ -144,9 +168,11 @@ final class SearchQuery implements QueryInterface
         return $this->city;
     }
 
-    public function setCity(string $city): void
+    public function setCity(string $city): SearchQuery
     {
         $this->city = $city;
+
+        return $this;
     }
 
     public function isIncludeInactiveRegistrations(): bool
@@ -154,9 +180,11 @@ final class SearchQuery implements QueryInterface
         return $this->includeInactiveRegistrations;
     }
 
-    public function setIncludeInactiveRegistrations(bool $includeInactiveRegistrations): void
+    public function setIncludeInactiveRegistrations(bool $includeInactiveRegistrations): SearchQuery
     {
         $this->includeInactiveRegistrations = $includeInactiveRegistrations;
+
+        return $this;
     }
 
     public function isRestrictToMainBranch(): bool
@@ -164,9 +192,11 @@ final class SearchQuery implements QueryInterface
         return $this->restrictToMainBranch;
     }
 
-    public function setRestrictToMainBranch(bool $restrictToMainBranch): void
+    public function setRestrictToMainBranch(bool $restrictToMainBranch): SearchQuery
     {
         $this->restrictToMainBranch = $restrictToMainBranch;
+
+        return $this;
     }
 
     public function getSite(): string
@@ -174,9 +204,11 @@ final class SearchQuery implements QueryInterface
         return $this->site;
     }
 
-    public function setSite(string $site): void
+    public function setSite(string $site): SearchQuery
     {
         $this->site = $site;
+
+        return $this;
     }
 
     public function getContext(): string
@@ -184,9 +216,11 @@ final class SearchQuery implements QueryInterface
         return $this->context;
     }
 
-    public function setContext(string $context): void
+    public function setContext(string $context): SearchQuery
     {
         $this->context = $context;
+
+        return $this;
     }
 
     public function getQ(): string
@@ -194,9 +228,11 @@ final class SearchQuery implements QueryInterface
         return $this->q;
     }
 
-    public function setQ(string $q): void
+    public function setQ(string $q): SearchQuery
     {
         $this->q = $q;
+
+        return $this;
     }
 
     public function get(): array

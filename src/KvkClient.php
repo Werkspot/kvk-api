@@ -39,7 +39,6 @@ final class KvkClient implements KvkClientInterface, KvkPaginatorAwareInterface
 
     /**
      * Execute search query
-     * @throws KvkApiException
      * @author Patrick Development <info@patrickdevelopment.nl>
      */
     public function fetchSearch(QueryInterface $profileQuery): KvkPaginatorInterface
