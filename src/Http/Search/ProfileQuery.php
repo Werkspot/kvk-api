@@ -7,50 +7,58 @@ namespace Werkspot\KvkApi\Http\Search;
 final class ProfileQuery implements QueryInterface
 {
     /**
-     * @info KvK number, identifying number for a registration in the Netherlands Business Register. Consists of 8 digits
+     * KvK number, identifying number for a registration in the Netherlands Business Register. Consists of 8 digits
+     *
      * @var string
      */
     private $kvkNumber;
 
     /**
-     * @info Branch number (Vestigingsnummer), identifying number of a branch. Consists of 12 digits
+     * Branch number (Vestigingsnummer), identifying number of a branch. Consists of 12 digits
+     *
      * @var string
      */
     private $branchNumber;
 
     /**
-     * @info RSIN is an identification number for legal entities and partnerships. Consist of only digits
+     * RSIN is an identification number for legal entities and partnerships. Consist of only digits
+     *
      * @var int
      */
     private $rsin;
 
     /**
-     * @info Indication  to include searching through inactive dossiers/deregistered companies.
+     * Indication  to include searching through inactive dossiers/deregistered companies.
+     *
      * @note History of inactive companies is after 1 January 2012
+     *
      * @var bool
      */
     private $includeInactiveRegistrations;
 
     /**
-     * @info restrictToMainBranch Search is restricted to main branches.
+     * RestrictToMainBranch Search is restricted to main branches.
      * @var bool
      */
     private $restrictToMainBranch;
 
     /**
-     * @info Defines the search collection for the query
+     * Defines the search collection for the query
+     *
      * @var string
      */
     private $site;
 
     /**
-     * @info User can optionally add a context to identify his result later on
+     * User can optionally add a context to identify his result later on
+     *
      * @var string
      */
     private $context;
 
     /**
-     * @info Free format text search for in the compiled search description.
+     * Free format text search for in the compiled search description.
+     *
      * @var string
      */
     private $q;
