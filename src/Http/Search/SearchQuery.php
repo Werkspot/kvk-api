@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace Werkspot\KvkApi\Http\Search;
 
+/**
+ * Class SearchQuery
+ *
+ * @author Patrick Development <info@patrickdevelopment.nl>
+ */
 final class SearchQuery implements QueryInterface
 {
     /**
