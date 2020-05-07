@@ -13,6 +13,9 @@ test:
 	$(MAKE) test-unit
 	$(MAKE) test-integration
 
+test-cs:
+	vendor/bin/php-cs-fixer fix --verbose --dry-run
+
 test-coverage:
 	rm -rf coverage; ./vendor/bin/phpunit --coverage-html=coverage/ --coverage-clover=coverage/clover.xml
 
