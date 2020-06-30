@@ -119,8 +119,8 @@ final class ProfileQueryTest extends TestCase
     public function set_q(string $string): void
     {
         $profileQuery =  new ProfileQuery();
-        $profileQuery->setQ($string);
-        self::assertSame($string, $profileQuery->getQ());
+        $profileQuery->setFreeTextQuery($string);
+        self::assertSame($string, $profileQuery->getFreeTextQuery());
 
         $query = $profileQuery->get();
         self::assertSame($string, $query['q']);
