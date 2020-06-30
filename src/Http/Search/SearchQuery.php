@@ -94,9 +94,9 @@ final class SearchQuery implements QueryInterface
      *
      * @var string
      */
-    private $q;
+    private $freeTextQuery;
 
-    public function getStreet(): string
+    public function getStreet(): ?string
     {
         return $this->street;
     }
@@ -108,7 +108,7 @@ final class SearchQuery implements QueryInterface
         return $this;
     }
 
-    public function getHouseNumber(): string
+    public function getHouseNumber(): ?string
     {
         return $this->houseNumber;
     }
@@ -120,7 +120,7 @@ final class SearchQuery implements QueryInterface
         return $this;
     }
 
-    public function getKvkNumber(): string
+    public function getKvkNumber(): ?string
     {
         return $this->kvkNumber;
     }
@@ -132,7 +132,7 @@ final class SearchQuery implements QueryInterface
         return $this;
     }
 
-    public function getBranchNumber(): string
+    public function getBranchNumber(): ?string
     {
         return $this->branchNumber;
     }
@@ -144,7 +144,7 @@ final class SearchQuery implements QueryInterface
         return $this;
     }
 
-    public function getRsin(): int
+    public function getRsin(): ?int
     {
         return $this->rsin;
     }
@@ -156,7 +156,7 @@ final class SearchQuery implements QueryInterface
         return $this;
     }
 
-    public function getPostalCode(): string
+    public function getPostalCode(): ?string
     {
         return $this->postalCode;
     }
@@ -168,7 +168,7 @@ final class SearchQuery implements QueryInterface
         return $this;
     }
 
-    public function getCity(): string
+    public function getCity(): ?string
     {
         return $this->city;
     }
@@ -180,7 +180,7 @@ final class SearchQuery implements QueryInterface
         return $this;
     }
 
-    public function isIncludeInactiveRegistrations(): bool
+    public function isIncludeInactiveRegistrations(): ?bool
     {
         return $this->includeInactiveRegistrations;
     }
@@ -192,7 +192,7 @@ final class SearchQuery implements QueryInterface
         return $this;
     }
 
-    public function isRestrictToMainBranch(): bool
+    public function isRestrictToMainBranch(): ?bool
     {
         return $this->restrictToMainBranch;
     }
@@ -204,7 +204,7 @@ final class SearchQuery implements QueryInterface
         return $this;
     }
 
-    public function getSite(): string
+    public function getSite(): ?string
     {
         return $this->site;
     }
@@ -216,7 +216,7 @@ final class SearchQuery implements QueryInterface
         return $this;
     }
 
-    public function getContext(): string
+    public function getContext(): ?string
     {
         return $this->context;
     }
@@ -228,20 +228,33 @@ final class SearchQuery implements QueryInterface
         return $this;
     }
 
-    public function getQ(): string
+    public function getFreeTextQuery(): ?string
     {
-        return $this->q;
+        return $this->freeTextQuery;
     }
 
-    public function setQ(string $q): SearchQuery
+    public function setFreeTextQuery(string $freeTextQuery): SearchQuery
     {
-        $this->q = $q;
+        $this->freeTextQuery = $freeTextQuery;
 
         return $this;
     }
 
     public function get(): array
     {
-        return get_object_vars($this);
+        return [
+            'kvkNumber' => $this->getKvkNumber(),
+            'branchNumber' => $this->getBranchNumber(),
+            'rsin' => $this->getRsin(),
+            'street' => $this->getStreet(),
+            'houseNumber' => $this->getHouseNumber(),
+            'postalCode' => $this->getPostalCode(),
+            'city' => $this->getCity(),
+            'includeInactiveRegistrations' => $this->isIncludeInactiveRegistrations(),
+            'restrictToMainBranch' => $this->isRestrictToMainBranch(),
+            'site' => $this->getSite(),
+            'context' => $this->getContext(),
+            'q' => $this->getFreeTextQuery(),
+        ];
     }
 }

@@ -119,8 +119,8 @@ final class SearchQueryTest extends TestCase
     public function set_q(string $string): void
     {
         $searchQuery =  new SearchQuery();
-        $searchQuery->setQ($string);
-        self::assertSame($string, $searchQuery->getQ());
+        $searchQuery->setFreeTextQuery($string);
+        self::assertSame($string, $searchQuery->getFreeTextQuery());
 
         $query = $searchQuery->get();
         self::assertSame($string, $query['q']);

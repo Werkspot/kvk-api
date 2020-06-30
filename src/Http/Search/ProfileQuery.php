@@ -61,9 +61,9 @@ final class ProfileQuery implements QueryInterface
      *
      * @var string
      */
-    private $q;
+    private $freeTextQuery;
 
-    public function getKvkNumber(): string
+    public function getKvkNumber(): ?string
     {
         return $this->kvkNumber;
     }
@@ -73,7 +73,7 @@ final class ProfileQuery implements QueryInterface
         $this->kvkNumber = $kvkNumber;
     }
 
-    public function getBranchNumber(): string
+    public function getBranchNumber(): ?string
     {
         return $this->branchNumber;
     }
@@ -83,7 +83,7 @@ final class ProfileQuery implements QueryInterface
         $this->branchNumber = $branchNumber;
     }
 
-    public function getRsin(): int
+    public function getRsin(): ?int
     {
         return $this->rsin;
     }
@@ -93,7 +93,7 @@ final class ProfileQuery implements QueryInterface
         $this->rsin = $rsin;
     }
 
-    public function isIncludeInactiveRegistrations(): bool
+    public function isIncludeInactiveRegistrations(): ?bool
     {
         return $this->includeInactiveRegistrations;
     }
@@ -103,7 +103,7 @@ final class ProfileQuery implements QueryInterface
         $this->includeInactiveRegistrations = $includeInactiveRegistrations;
     }
 
-    public function isRestrictToMainBranch(): bool
+    public function isRestrictToMainBranch(): ?bool
     {
         return $this->restrictToMainBranch;
     }
@@ -113,7 +113,7 @@ final class ProfileQuery implements QueryInterface
         $this->restrictToMainBranch = $restrictToMainBranch;
     }
 
-    public function getSite()
+    public function getSite(): ?string
     {
         return $this->site;
     }
@@ -123,7 +123,7 @@ final class ProfileQuery implements QueryInterface
         $this->site = $site;
     }
 
-    public function getContext(): string
+    public function getContext(): ?string
     {
         return $this->context;
     }
@@ -133,18 +133,27 @@ final class ProfileQuery implements QueryInterface
         $this->context = $context;
     }
 
-    public function getQ(): string
+    public function getFreeTextQuery(): ?string
     {
-        return $this->q;
+        return $this->freeTextQuery;
     }
 
-    public function setQ(string $q): void
+    public function setFreeTextQuery(string $freeTextQuery): void
     {
-        $this->q = $q;
+        $this->freeTextQuery = $freeTextQuery;
     }
 
     public function get(): array
     {
-        return get_object_vars($this);
+        return [
+            'kvkNumber' => $this->getKvkNumber(),
+            'branchNumber' => $this->getBranchNumber(),
+            'rsin' => $this->getRsin(),
+            'includeInactiveRegistrations' => $this->isIncludeInactiveRegistrations(),
+            'restrictToMainBranch' => $this->isRestrictToMainBranch(),
+            'site' => $this->getSite(),
+            'context' => $this->getContext(),
+            'q' => $this->getFreeTextQuery(),
+        ];
     }
 }
