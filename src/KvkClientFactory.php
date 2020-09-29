@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Werkspot\KvkApi;
 
-use GuzzleHttp\Handler\CurlHandler;
+use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Uri;
@@ -20,23 +20,38 @@ use Werkspot\KvkApi\Http\Endpoint\MapperInterface;
 
 final class KvkClientFactory
 {
-    public static function create(string $userKey, MapperInterface $endpoint): KvkClient
-    {
+    public static function create(
+        string $userKey,
+        MapperInterface $endpoint,
+        ?string $rootCertificate = null
+    ): KvkClient {
         return new KvkClient(
-            self::createHttpClient($userKey, $endpoint),
+            self::createHttpClient($userKey, $endpoint, $rootCertificate),
             self::createProfileResponseFactory()
         );
     }
 
-    private static function createHttpClient(string $userKey, MapperInterface $endpoint): ClientInterface
-    {
+    private static function createHttpClient(
+        string $userKey,
+        MapperInterface $endpoint,
+        ?string $rootCertificate = null
+    ): ClientInterface {
         $stack = HandlerStack::create();
         $stack->unshift(Middleware::mapRequest(function (RequestInterface $request) use ($userKey) {
             return $request->withUri(Uri::withQueryValue($request->getUri(), 'user_key', $userKey));
         }));
 
+        if ($rootCertificate === null) {
+            trigger_error('kvk-api: Not using a root certificate is deprecated and will be required in version 1.0. Please configure a root certificate.', E_USER_DEPRECATED);
+        }
+
+        $client = new Client([
+            'verify' => $rootCertificate ?? false,
+            'handler' => $stack,
+        ]);
+
         return new GuzzleClient(
-            new \GuzzleHttp\Client(['handler' => $stack]),
+            $client,
             $endpoint
         );
     }

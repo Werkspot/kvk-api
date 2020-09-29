@@ -18,13 +18,37 @@ use Werkspot\KvkApi\KvkClientFactory;
  */
 final class ClientTest extends TestCase
 {
+    private const ROOT_CERTIFICATE = __DIR__ . '/../../cert/Private_G1_chain.pem';
+
+    /**
+     * @test
+     */
+    public function deprecated_no_certificate_given_should_still_work(): void
+    {
+        $kvkNumber = '69599084';
+
+        error_reporting(E_ERROR );
+
+        $client = KvkClientFactory::create('', new Testing());
+
+        $profileQuery = new ProfileQuery();
+        $profileQuery->setKvkNumber($kvkNumber);
+
+        $profileResponse = $client->getProfile($profileQuery);
+
+        foreach ($profileResponse->getItems() as $company) {
+            self::assertInstanceOf(Company::class, $company);
+            self::assertEquals($kvkNumber, $company->getKvkNumber());
+        }
+    }
+
     /**
      * @test
      * @dataProvider getKvkNumbers
      */
     public function get_profile(string $kvkNumber): void
     {
-        $client = KvkClientFactory::create('', new Testing());
+        $client = KvkClientFactory::create('', new Testing(), self::ROOT_CERTIFICATE);
 
         $profileQuery = new ProfileQuery();
         $profileQuery->setKvkNumber($kvkNumber);
@@ -44,7 +68,7 @@ final class ClientTest extends TestCase
      */
     public function get_profile_should_throw_exception(string $kvkNumber): void
     {
-        $client = KvkClientFactory::create('', new Testing());
+        $client = KvkClientFactory::create('', new Testing(), self::ROOT_CERTIFICATE);
 
         $profileQuery = new ProfileQuery();
         $profileQuery->setKvkNumber($kvkNumber);
@@ -58,7 +82,7 @@ final class ClientTest extends TestCase
      */
     public function fetch_search(string $kvkNumber): void
     {
-        $client = KvkClientFactory::create('', new Testing());
+        $client = KvkClientFactory::create('', new Testing(), self::ROOT_CERTIFICATE);
 
         $searchQuery = new SearchQuery();
         $searchQuery->setKvkNumber($kvkNumber);
