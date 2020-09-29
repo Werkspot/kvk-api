@@ -16,6 +16,14 @@ With [composer](http://packagist.org), add:
 $ composer require werkspot/kvk-api
 ```
 
+
+ROOT CERTIFICATE
+-----
+On October 28, 2020, the KVK started signing the SSL connection with a self signed [certificate from the dutch government][kvk-guide].
+To prevent this package from breaking current implementations; SSL verification will be disabled by default. 
+If you would like to enable the verification of the SSL certificates you can implement the path to the certificate (included) as the 3rd parameter of the factory.
+When failing to do so a deprecation error wil be triggered (E_USER_DEPRECATED). 
+
 Usage
 -----
 profile query
@@ -24,7 +32,7 @@ use Werkspot\KvkApi\Http\Endpoint\Production;
 use Werkspot\KvkApi\Http\Search\ProfileQuery;
 use Werkspot\KvkApi\KvkClientFactory;
 
-$client = KvkClientFactory::create('<YOUR_API_KEY>', new Production());
+$client = KvkClientFactory::create('<YOUR_API_KEY>', new Production(), '/path/to/dutch-government-certificate.pem');
 
 $profileQuery = new ProfileQuery();
 $profileQuery->setKvkNumber('18079951');
@@ -80,3 +88,4 @@ KVK API has been created by [LauLaman] and is currently maintained by the develo
 [kvk-api-documentation]: https://developers.kvk.nl/documentation
 [LauLaman]: https://github.com/LauLaman
 [Werkspot]: https://www.werkspot.nl
+[kvk-guide]: https://developers.kvk.nl/guides
