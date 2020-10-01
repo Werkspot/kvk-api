@@ -27,7 +27,7 @@ final class ClientTest extends TestCase
     {
         $kvkNumber = '69599084';
 
-        error_reporting(E_ERROR );
+        error_reporting(E_ERROR);
 
         $client = KvkClientFactory::create('', new Testing());
 
