@@ -41,7 +41,7 @@ final class CompanyFactory extends AbstractFactory implements CompanyFactoryInte
     public function fromArray(array $data): Company
     {
         return new Company(
-            $this->extractIntegerOrNull('kvkNumber', $data),
+            $this->extractStringOrNull('kvkNumber', $data),
             $this->extractStringOrNull('branchNumber', $data),
             $this->extractIntegerOrNull('rsin', $data),
             $this->tradeNamesFactory->fromArray($data['tradeNames']),

@@ -10,6 +10,7 @@ use Mockery;
 use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
+use Werkspot\KvkApi\Exception\KvkApiException;
 use Werkspot\KvkApi\Http\Adapter\Guzzle\Client;
 use Werkspot\KvkApi\Http\Endpoint\MapperInterface;
 use Werkspot\KvkApi\Http\Search\QueryInterface;
@@ -65,14 +66,14 @@ final class GuzzleTest extends TestCase
 
     /**
      * @test
-     *
-     * @expectedException \Werkspot\KvkApi\Exception\KvkApiException
      */
     public function get_url_should_throw_exception(): void
     {
         $url = 'http://example.com';
 
         $urlMapper = $this->getMapper();
+
+        $this->expectException(KvkApiException::class);
 
         $guzzleClient = $this->getGuzzleClient();
         $guzzleClient->shouldReceive('get')->once()->with($url, [])->andThrow(Mockery::Mock(RequestException::class));

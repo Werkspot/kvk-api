@@ -16,7 +16,7 @@ final class SearchQueryTest extends TestCase
 {
     /**
      * @test
-     * @dataProvider getInteger
+     * @dataProvider getStringKvkNumbers
      */
     public function set_kvk_number(string $int): void
     {
@@ -190,6 +190,17 @@ final class SearchQueryTest extends TestCase
             [20],
             [300],
             [4000]
+        ];
+    }
+
+    public function getStringKvkNumbers(): array
+    {
+        return [
+            ['0'],
+            ['1'],
+            ['20'],
+            ['300'],
+            ['4000']
         ];
     }
 

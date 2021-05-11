@@ -102,7 +102,7 @@ RESPONSE;
         $adapter->shouldReceive('getJson')->with($response)->once()->andReturn($json);
 
         $client = new KvkClient($adapter, $this->getProfileResponseFactory());
-        $this->expectExceptionMessageRegExp('/^Unknown payload.*/');
+        $this->expectExceptionMessageMatches('/^Unknown payload.*/');
         $client->getProfile($profileQuery);
     }
 
