@@ -44,7 +44,7 @@ final class Company
     private $addresses;
 
     public function __construct(
-        int $kvkNumber,
+        string $kvkNumber,
         ?string $branchNumber = null,
         ?int $rsin = null,
         TradeNames $tradeNames,
@@ -79,7 +79,7 @@ final class Company
         $this->addresses = $addresses;
     }
 
-    public function getKvkNumber(): int
+    public function getKvkNumber(): string
     {
         return $this->kvkNumber;
     }
