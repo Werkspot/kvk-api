@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Werkspot\KvkApi\Test\Unit\Http\Endpoint;
 
 use PHPUnit\Framework\TestCase;
+use Werkspot\KvkApi\Http\Endpoint\Exception\EndpointCouldNotBeMappedException;
 use Werkspot\KvkApi\Http\Endpoint\MapperInterface;
 use Werkspot\KvkApi\Http\Endpoint\Testing;
 
@@ -25,16 +26,16 @@ final class TestingTest extends TestCase
         $endpoint = $endpoint->map($endpointKey);
 
         self::assertNotNull($endpoint);
-        self::assertContains(Testing::BASE_URL, $endpoint);
+        self::assertStringContainsString(Testing::BASE_URL, $endpoint);
     }
 
     /**
      * @test
-     * @expectedException \Werkspot\KvkApi\Http\Endpoint\Exception\EndpointCouldNotBeMappedException
      */
     public function mapping_invalid_key_throws_exception(): void
     {
         $endpoint = new Testing();
+        $this->expectException(EndpointCouldNotBeMappedException::class);
         $endpoint->map('invalid');
     }
 

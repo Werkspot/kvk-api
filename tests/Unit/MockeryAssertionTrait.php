@@ -24,5 +24,5 @@ trait MockeryAssertionTrait
         Mockery::close();
     }
 
-    abstract public function addToAssertionCount($count);
+    abstract public function addToAssertionCount(int $count);
 }

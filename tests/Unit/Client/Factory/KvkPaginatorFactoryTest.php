@@ -71,7 +71,7 @@ final class KvkPaginatorFactoryTest extends TestCase
     private function getCompany(): Company
     {
         return new Company(
-            123,
+            '123',
             null,
             null,
             new TradeNames(null, null, null, null),

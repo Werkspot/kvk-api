@@ -9,7 +9,9 @@ use Mockery;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Werkspot\KvkApi\Exception\KvkApiException;
 use Werkspot\KvkApi\Http\Adapter\Guzzle\Exception\Handler;
+use Werkspot\KvkApi\Http\Adapter\Guzzle\Exception\NotFoundException;
 
 /**
  * @small
@@ -20,19 +22,19 @@ final class HandlerTest extends TestCase
 {
     /**
      * @test
-     * @expectedException \Werkspot\KvkApi\Exception\KvkApiException
      */
     public function handle_request_exception_should_throw_generic_exception(): void
     {
+        $this->expectException(KvkApiException::class);
         Handler::handleRequestException($this->getException());
     }
 
     /**
      * @test
-     * @expectedException \Werkspot\KvkApi\Http\Adapter\Guzzle\Exception\NotFoundException
      */
     public function handle_request_exception_should_throw_not_found_exception(): void
     {
+        $this->expectException(NotFoundException::class);
         Handler::handleRequestException($this->getException(404));
     }
 
